@@ -1,17 +1,69 @@
-# mobile
+# AÜ Hub — Mobil Uygulama
 
-A new Flutter project.
+AÜ Hub projesinin Flutter ile geliştirilmiş mobil uygulaması. Kampüs hizmetlerine (derslik/kütüphane rezervasyonu, etkinlikler, kayıp eşya) erişim sağlar.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Gereksinimler
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter **3.47.5** veya üzeri
+- Dart SDK (Flutter ile birlikte gelir)
+- Android Emülatör veya gerçek Android/iOS cihazı
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Flutter versiyonunu kontrol etmek için:
+```bash
+flutter --version
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## Kurulum ve Çalıştırma
+
+```bash
+# 1. Bağımlılıkları yükle
+flutter pub get
+
+# 2. Uygulamayı başlat
+flutter run
+```
+
+Belirli bir cihazı hedeflemek için:
+```bash
+# Bağlı cihazları listele
+flutter devices
+
+# Belirli cihazda çalıştır
+flutter run -d <device_id>
+```
+
+---
+
+## API Adresini Ayarla
+
+Uygulama, backend API'sine bağlanmak için bir adres kullanır.  
+**Önce `api/` klasöründe Web API'yi başlatman gerekir** (bkz. [ana README](../README.md)).
+
+| Senaryo | API Adresi |
+|---|---|
+| Android Emülatör | `http://10.0.2.2:5000` |
+| iOS Simulator | `http://localhost:5000` |
+| Gerçek Cihaz | `http://<bilgisayarın-IP>:5000` |
+
+---
+
+## Ekranlar
+
+| Ekran | Durum |
+|---|---|
+| Giriş Ekranı | ✅ Hazır (1. Hafta) |
+| Kayıt Ekranı | 🔜 Planlandı |
+| Ana Sayfa | 🔜 Planlandı |
+| Derslik Rezervasyonu | 🔜 Planlandı |
+| Etkinlikler | 🔜 Planlandı |
+| Yönetim Paneli | 🔜 Planlandı |
+
+---
+
+## Proje Hakkında
+
+API ve kurulum bilgileri için → [Ana README](../README.md)
