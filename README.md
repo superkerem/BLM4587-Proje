@@ -1,8 +1,6 @@
 # AÜ Hub — Kampüs Portalı
 
-BLM4587 IOS İle Mobil Uygulama Geliştirme I Dönem Projesi (2026–2027 Güz Yarıyılı)
-
-Üniversite öğrencileri için derslik rezervasyonu, kütüphane masa takibi, etkinlik duyuruları ve kayıp eşya bildirimi gibi kampüs hizmetlerini tek bir mobil uygulamada bir araya getiren platform.
+BLM4587 IOS İle Mobil Uygulama Geliştirme I Dönem Projesi: Ankara Üniversitesi Kampüs Portalı (AÜ Hub)
 
 ---
 
