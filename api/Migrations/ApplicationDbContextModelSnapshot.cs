@@ -22,6 +22,76 @@ namespace api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("api.Models.Akademisyen", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Ad")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Soyad")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Unvan")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Akademisyenler");
+                });
+
+            modelBuilder.Entity("api.Models.Ders", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AkademisyenId")
+                        .HasColumnType("integer");
+
+                    b.Property<TimeOnly>("BaslangicSaati")
+                        .HasColumnType("time without time zone");
+
+                    b.Property<TimeOnly>("BitisSaati")
+                        .HasColumnType("time without time zone");
+
+                    b.Property<string>("DersAdi")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("DerslikId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Gun")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AkademisyenId");
+
+                    b.HasIndex("DerslikId");
+
+                    b.ToTable("Dersler");
+                });
+
             modelBuilder.Entity("api.Models.Derslik", b =>
                 {
                     b.Property<int>("Id")
@@ -32,23 +102,29 @@ namespace api.Migrations
 
                     b.Property<string>("Ad")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<string>("Blok")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<int>("Kapasite")
                         .HasColumnType("integer");
 
                     b.Property<string>("Kat")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.Property<bool>("MusaitMi")
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Ad")
+                        .IsUnique();
 
                     b.ToTable("Derslikler");
                 });
@@ -67,18 +143,21 @@ namespace api.Migrations
 
                     b.Property<string>("Baslik")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<string>("Konum")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<DateTime>("Tarih")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ToplulukAdi")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.HasKey("Id");
 
@@ -99,14 +178,16 @@ namespace api.Migrations
 
                     b.Property<string>("Baslik")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<int>("BildirenKullaniciId")
                         .HasColumnType("integer");
 
                     b.Property<string>("BulunanYer")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<DateTime>("BulunmaTarihi")
                         .HasColumnType("timestamp with time zone");
@@ -115,6 +196,8 @@ namespace api.Migrations
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BildirenKullaniciId");
 
                     b.ToTable("KayipEsyalar");
                 });
@@ -129,18 +212,25 @@ namespace api.Migrations
 
                     b.Property<string>("Ad")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<DateTime>("KayitTarihi")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("OgrenciNo")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
                     b.Property<string>("Rol")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<string>("SifreHash")
                         .IsRequired()
@@ -148,9 +238,16 @@ namespace api.Migrations
 
                     b.Property<string>("Soyad")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("OgrenciNo")
+                        .IsUnique();
 
                     b.ToTable("Kullanicilar");
                 });
@@ -166,12 +263,19 @@ namespace api.Migrations
                     b.Property<bool>("DoluMu")
                         .HasColumnType("boolean");
 
+                    b.Property<int>("Kapasite")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Kat")
                         .HasColumnType("integer");
 
                     b.Property<string>("MasaNo")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<bool>("PrizVarMi")
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime?>("RezervasyonBitis")
                         .HasColumnType("timestamp with time zone");
@@ -181,7 +285,69 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MasaNo")
+                        .IsUnique();
+
+                    b.HasIndex("RezerveEdenKullaniciId");
+
                     b.ToTable("KutuphaneMasalari");
+                });
+
+            modelBuilder.Entity("api.Models.Ders", b =>
+                {
+                    b.HasOne("api.Models.Akademisyen", "Akademisyen")
+                        .WithMany("Dersler")
+                        .HasForeignKey("AkademisyenId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("api.Models.Derslik", "Derslik")
+                        .WithMany("Dersler")
+                        .HasForeignKey("DerslikId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Akademisyen");
+
+                    b.Navigation("Derslik");
+                });
+
+            modelBuilder.Entity("api.Models.KayipEsya", b =>
+                {
+                    b.HasOne("api.Models.Kullanici", "BildirenKullanici")
+                        .WithMany("BildirilenEsyalar")
+                        .HasForeignKey("BildirenKullaniciId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BildirenKullanici");
+                });
+
+            modelBuilder.Entity("api.Models.KutuphaneMasasi", b =>
+                {
+                    b.HasOne("api.Models.Kullanici", "RezerveEdenKullanici")
+                        .WithMany("RezerveMasalar")
+                        .HasForeignKey("RezerveEdenKullaniciId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("RezerveEdenKullanici");
+                });
+
+            modelBuilder.Entity("api.Models.Akademisyen", b =>
+                {
+                    b.Navigation("Dersler");
+                });
+
+            modelBuilder.Entity("api.Models.Derslik", b =>
+                {
+                    b.Navigation("Dersler");
+                });
+
+            modelBuilder.Entity("api.Models.Kullanici", b =>
+                {
+                    b.Navigation("BildirilenEsyalar");
+
+                    b.Navigation("RezerveMasalar");
                 });
 #pragma warning restore 612, 618
         }
