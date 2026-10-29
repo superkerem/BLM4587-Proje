@@ -73,14 +73,6 @@ lib/
 └── main.dart                         → Rotalar ve rol kontrolü
 ```
 
-## Kimlik Doğrulama ve Form Doğrulama (2. Hafta)
-
-- Giriş ve kayıt Web API üzerinden yapılır; API bir **JWT** döner. "Beni Hatırla" seçilirse token `flutter_secure_storage` ile cihazda şifreli saklanır, seçilmezse yalnızca uygulama açıkken bellekte tutulur.
-- Çıkış: token cihazdan silinir.
-- Formlarda iki aşamalı doğrulama vardır: önce `TextFormField` doğrulayıcıları cihazda çalışır (istek gönderilmeden), sonra API aynı kuralları tekrar kontrol eder. API'den dönen alan hataları (ör. "e-posta zaten kayıtlı") ilgili alanın altında gösterilir.
-- Yönetim ekranları yalnızca `Yonetici` rolüne görünür; rolü yetmeyen kullanıcı **Erişim Engellendi** ekranını görür. Asıl kontrol API'dedir (`403`).
-
-Testleri çalıştırmak için: `flutter test`
 
 ---
 
