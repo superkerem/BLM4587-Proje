@@ -1,30 +1,24 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace api.Models
 {
-    // Öğrenci ve personel kullanıcıları. 2. haftada ASP.NET Core Identity'ye taşınacak.
-    public class Kullanici
+    public class Kullanici : IdentityUser<int>
     {
-        public int Id { get; set; }
-
+        [Required(ErrorMessage = "Ad zorunludur.")]
         [StringLength(50)]
+        [Display(Name = "Ad")]
         public string Ad { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "Soyad zorunludur.")]
         [StringLength(50)]
+        [Display(Name = "Soyad")]
         public string Soyad { get; set; } = string.Empty;
 
         // Sadece öğrenciler için dolu, personelde boş kalır.
         [StringLength(20)]
+        [Display(Name = "Öğrenci No")]
         public string? OgrenciNo { get; set; }
-
-        [StringLength(100)]
-        public string Email { get; set; } = string.Empty;
-
-        public string SifreHash { get; set; } = string.Empty;
-
-        // "Yonetici" veya "Kullanici"
-        [StringLength(20)]
-        public string Rol { get; set; } = "Kullanici";
 
         public DateTime KayitTarihi { get; set; } = DateTime.UtcNow;
 

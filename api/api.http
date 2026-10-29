@@ -1,6 +1,32 @@
 @api_HostAddress = http://localhost:5135
 
-GET {{api_HostAddress}}/weatherforecast/
-Accept: application/json
+### Kayıt ol
+POST {{api_HostAddress}}/api/hesap/kayit
+Content-Type: application/json
 
-###
+{
+  "ad": "Ali",
+  "soyad": "Yılmaz",
+  "ogrenciNo": "22290001",
+  "email": "ali@ankara.edu.tr",
+  "sifre": "sifre1234",
+  "sifreTekrar": "sifre1234"
+}
+
+### Giriş yap (öğrenci no veya e-posta)
+# @name giris
+POST {{api_HostAddress}}/api/hesap/giris
+Content-Type: application/json
+
+{
+  "kullaniciAdiVeyaEmail": "22290001",
+  "sifre": "sifre1234"
+}
+
+### Oturumdaki kullanıcı
+GET {{api_HostAddress}}/api/hesap/ben
+Authorization: Bearer {{giris.response.body.token}}
+
+### Yönetim: tüm kullanıcılar (sadece Yonetici rolü, diğerlerine 403)
+GET {{api_HostAddress}}/api/yonetim/kullanicilar
+Authorization: Bearer {{giris.response.body.token}}

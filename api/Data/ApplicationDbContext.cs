@@ -1,15 +1,16 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using api.Models;
 
-namespace api.Data 
+namespace api.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<Kullanici, IdentityRole<int>, int>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 
-        public DbSet<Kullanici> Kullanicilar { get; set; }
         public DbSet<Akademisyen> Akademisyenler { get; set; }
         public DbSet<Derslik> Derslikler { get; set; }
         public DbSet<Ders> Dersler { get; set; }
@@ -21,9 +22,9 @@ namespace api.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Kullanici>()
-                .HasIndex(k => k.Email)
-                .IsUnique();
+            modelBuilder.Entity<Kullanici>().ToTable("Kullanicilar");
+            modelBuilder.Entity<IdentityRole<int>>().ToTable("Roller");
+            modelBuilder.Entity<IdentityUserRole<int>>().ToTable("KullaniciRolleri");
 
             modelBuilder.Entity<Kullanici>()
                 .HasIndex(k => k.OgrenciNo)
@@ -36,7 +37,8 @@ namespace api.Data
             modelBuilder.Entity<KutuphaneMasasi>()
                 .HasIndex(m => m.MasaNo)
                 .IsUnique();
-                
+
+            // Derslik veya akademisyen silinirse bağlı dersler sessizce silinmesin.
             modelBuilder.Entity<Ders>()
                 .HasOne(d => d.Derslik)
                 .WithMany(d => d.Dersler)
@@ -49,6 +51,7 @@ namespace api.Data
                 .HasForeignKey(d => d.AkademisyenId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            // Kullanıcı silinince masa rezervasyonu boşa çıkar.
             modelBuilder.Entity<KutuphaneMasasi>()
                 .HasOne(m => m.RezerveEdenKullanici)
                 .WithMany(k => k.RezerveMasalar)
