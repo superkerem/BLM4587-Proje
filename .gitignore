@@ -1,0 +1,13 @@
+# .NET derleme çıktıları
+**/bin/
+**/obj/
+*.user
+.vs/
+
+# Gizli bilgiler (User Secrets kullanılıyor, yine de önlem)
+appsettings.*.local.json
+*.env
+
+# macOS / IDE
+.DS_Store
+.idea/
