@@ -92,6 +92,16 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy(Politikalar.SadeceYonetici, policy => policy.RequireRole(Roller.Yonetici));
 });
 
+// Flutter uygulaması Chrome'da (web) çalışırken farklı bir porttan istek atar;
+// tarayıcı buna CORS izni olmadan izin vermez. Sadece geliştirmede localhost'a izin verilir.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("GelistirmeCors", policy => policy
+        .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+        .AllowAnyHeader()
+        .AllowAnyMethod());
+});
+
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -116,6 +126,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors("GelistirmeCors");
+}
 
 app.UseAuthentication();
 app.UseAuthorization();
