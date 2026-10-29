@@ -85,53 +85,7 @@ class AnaSayfa extends StatelessWidget {
             oturum.yoneticiMi ? 'Rol: Yönetici' : 'Rol: Kullanıcı',
             style: const TextStyle(color: Colors.grey),
           ),
-          const SizedBox(height: 24),
-          LayoutBuilder(
-            builder: (context, kisit) {
-              final sutun = kisit.maxWidth > 600 ? 3 : 2;
-              return GridView.count(
-                crossAxisCount: sutun,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
-                children: const [
-                  _HizmetKarti(ikon: Icons.meeting_room, baslik: 'Derslikler'),
-                  _HizmetKarti(ikon: Icons.local_library, baslik: 'Kütüphane'),
-                  _HizmetKarti(ikon: Icons.event, baslik: 'Etkinlikler'),
-                  _HizmetKarti(ikon: Icons.search, baslik: 'Kayıp Eşya'),
-                ],
-              );
-            },
-          ),
         ],
-      ),
-    );
-  }
-}
-
-class _HizmetKarti extends StatelessWidget {
-  const _HizmetKarti({required this.ikon, required this.baslik});
-
-  final IconData ikon;
-  final String baslik;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('$baslik ekranı sonraki haftalarda eklenecek.')),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(ikon, size: 40, color: Colors.blue.shade700),
-            const SizedBox(height: 8),
-            Text(baslik, style: const TextStyle(fontWeight: FontWeight.w600)),
-          ],
-        ),
       ),
     );
   }
