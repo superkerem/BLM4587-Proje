@@ -40,27 +40,47 @@ flutter run -d <device_id>
 
 ## API Adresini Ayarla
 
-Uygulama, backend API'sine bağlanmak için bir adres kullanır.  
+Uygulama, backend API'sine bağlanmak için `lib/core/constants/api_constants.dart` içindeki `ApiSabitleri.baseUrl` adresini kullanır.
 **Önce `api/` klasöründe Web API'yi başlatman gerekir** (bkz. [ana README](../README.md)).
 
-| Senaryo | API Adresi |
-|---|---|
-| Android Emülatör | `http://10.0.2.2:5000` |
-| iOS Simulator | `http://localhost:5000` |
-| Gerçek Cihaz | `http://<bilgisayarın-IP>:5000` |
+| Senaryo | API Adresi | Nasıl |
+|---|---|---|
+| Android Emülatör | `http://10.0.2.2:5135` | Varsayılan, bir şey yapma |
+| iOS Simulator | `http://localhost:5135` | Varsayılan, bir şey yapma |
+| Gerçek Cihaz | `http://<bilgisayarın-IP>:5135` | `flutter run --dart-define=API_URL=http://192.168.1.X:5135` |
 
 ---
 
-## Ekranlar
+## Klasör Yapısı
 
-| Ekran | Durum |
-|---|---|
-| Giriş Ekranı | ✅ Hazır (1. Hafta) |
-| Kayıt Ekranı | 🔜 Planlandı |
-| Ana Sayfa | 🔜 Planlandı |
-| Derslik Rezervasyonu | 🔜 Planlandı |
-| Etkinlikler | 🔜 Planlandı |
-| Yönetim Paneli | 🔜 Planlandı |
+```
+lib/
+├── core/
+│   ├── constants/api_constants.dart  → API adresi ve uç noktalar
+│   ├── dogrulayicilar.dart           → Form doğrulama kuralları (API'deki Data Annotations karşılığı)
+│   └── roller.dart                   → Rol adları (Yonetici, Kullanici)
+├── models/kullanici.dart
+├── services/
+│   ├── api_istemcisi.dart            → HTTP istekleri, JWT başlığı, hata çözümleme
+│   └── oturum_servisi.dart           → Giriş/kayıt/çıkış, token saklama
+├── screens/
+│   ├── giris_ekrani.dart
+│   ├── kayit_ekrani.dart
+│   ├── ana_sayfa.dart                → Role göre değişen menü
+│   ├── erisim_engellendi_ekrani.dart
+│   └── yonetim/kullanicilar_ekrani.dart  → Yalnızca Yönetici
+├── widgets/form_ogeleri.dart
+└── main.dart                         → Rotalar ve rol kontrolü
+```
+
+## Kimlik Doğrulama ve Form Doğrulama (2. Hafta)
+
+- Giriş ve kayıt Web API üzerinden yapılır; API bir **JWT** döner. "Beni Hatırla" seçilirse token `flutter_secure_storage` ile cihazda şifreli saklanır, seçilmezse yalnızca uygulama açıkken bellekte tutulur.
+- Çıkış: token cihazdan silinir.
+- Formlarda iki aşamalı doğrulama vardır: önce `TextFormField` doğrulayıcıları cihazda çalışır (istek gönderilmeden), sonra API aynı kuralları tekrar kontrol eder. API'den dönen alan hataları (ör. "e-posta zaten kayıtlı") ilgili alanın altında gösterilir.
+- Yönetim ekranları yalnızca `Yonetici` rolüne görünür; rolü yetmeyen kullanıcı **Erişim Engellendi** ekranını görür. Asıl kontrol API'dedir (`403`).
+
+Testleri çalıştırmak için: `flutter test`
 
 ---
 
