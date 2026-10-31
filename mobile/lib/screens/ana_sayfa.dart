@@ -52,6 +52,15 @@ class AnaSayfa extends StatelessWidget {
               ),
             ),
             const ListTile(leading: Icon(Icons.home), title: Text('Ana Sayfa')),
+            for (final modul in Moduller.hepsi)
+              ListTile(
+                leading: Icon(modul.ikon),
+                title: Text(modul.baslik),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, modul.rota);
+                },
+              ),
             // Web'deki _GirisPartial gibi: yönetim bağlantısı yalnızca Yönetici rolüne görünür.
             if (oturum.yoneticiMi)
               ListTile(
