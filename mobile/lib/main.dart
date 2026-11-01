@@ -5,6 +5,12 @@ import 'package:flutter/material.dart';
 import 'screens/ana_sayfa.dart';
 import 'screens/erisim_engellendi_ekrani.dart';
 import 'screens/giris_ekrani.dart';
+import 'screens/kampus/derslik_bul_ekrani.dart';
+import 'screens/kampus/etkinlikler_ekrani.dart';
+import 'screens/kampus/harita_ekrani.dart';
+import 'screens/kampus/kayip_esya_ekrani.dart';
+import 'screens/kampus/kutuphane_ekrani.dart';
+import 'screens/kampus/yemekhane_ekrani.dart';
 import 'screens/kayit_ekrani.dart';
 import 'screens/yonetim/kullanicilar_ekrani.dart';
 import 'services/oturum_servisi.dart';
@@ -49,7 +55,8 @@ class _KampusPortaliAppState extends State<KampusPortaliApp> {
     }
   }
 
-  // Web'deki AuthorizeFolder("/Yonetim", "SadeceYonetici") + LoginPath/AccessDeniedPath karşılığı.
+  // Web'deki AuthorizeFolder("/Yonetim", "SadeceYonetici") ve AuthorizeFolder("/Kampus")
+  // + LoginPath/AccessDeniedPath karşılığı.
   Route<dynamic> _rotaOlustur(RouteSettings ayarlar) {
     final ad = ayarlar.name ?? '/';
     Widget ekran;
@@ -63,6 +70,20 @@ class _KampusPortaliAppState extends State<KampusPortaliApp> {
         ekran = switch (ad) {
           '/yonetim/kullanicilar' => const KullanicilarEkrani(),
           _ => const ErisimEngellendiEkrani(),
+        };
+      }
+    } else if (ad.startsWith('/kampus')) {
+      if (!_oturum.girisYapildi) {
+        ekran = const GirisEkrani();
+      } else {
+        ekran = switch (ad) {
+          '/kampus/harita' => const HaritaEkrani(),
+          '/kampus/derslik-bul' => const DerslikBulEkrani(),
+          '/kampus/kutuphane' => const KutuphaneEkrani(),
+          '/kampus/yemekhane' => const YemekhaneEkrani(),
+          '/kampus/etkinlikler' => const EtkinliklerEkrani(),
+          '/kampus/kayip-esya' => const KayipEsyaEkrani(),
+          _ => const AnaSayfa(),
         };
       }
     } else {
