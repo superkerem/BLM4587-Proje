@@ -30,3 +30,33 @@ Authorization: Bearer {{giris.response.body.token}}
 ### Yönetim: tüm kullanıcılar (sadece Yonetici rolü, diğerlerine 403)
 GET {{api_HostAddress}}/api/yonetim/kullanicilar
 Authorization: Bearer {{giris.response.body.token}}
+
+### Duyurular (giriş yapmış herkes)
+GET {{api_HostAddress}}/api/duyurular
+Authorization: Bearer {{giris.response.body.token}}
+
+### Duyuru ekle (sadece Yonetici, diğerlerine 403)
+POST {{api_HostAddress}}/api/duyurular
+Authorization: Bearer {{giris.response.body.token}}
+Content-Type: application/json
+
+{
+  "baslik": "Kütüphane hafta sonu açık",
+  "icerik": "Final haftası boyunca merkez kütüphane cumartesi ve pazar 09:00-22:00 arası açıktır.",
+  "onemliMi": true
+}
+
+### Duyuru güncelle
+PUT {{api_HostAddress}}/api/duyurular/1
+Authorization: Bearer {{giris.response.body.token}}
+Content-Type: application/json
+
+{
+  "baslik": "Kütüphane hafta sonu açık",
+  "icerik": "Saatler 09:00-23:00 olarak güncellendi.",
+  "onemliMi": false
+}
+
+### Duyuru sil
+DELETE {{api_HostAddress}}/api/duyurular/1
+Authorization: Bearer {{giris.response.body.token}}

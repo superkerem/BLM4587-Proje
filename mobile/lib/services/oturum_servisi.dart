@@ -7,8 +7,6 @@ import '../core/constants/api_constants.dart';
 import '../models/kullanici.dart';
 import 'api_istemcisi.dart';
 
-// Giriş durumunu tutar. Ekranlar bu sınıfı dinleyerek giriş yapılıp yapılmadığına
-// ve kullanıcının rolüne göre farklı içerik gösterir (web'deki _GirisPartial gibi).
 class OturumServisi extends ChangeNotifier {
   OturumServisi._() {
     api.oturumSonlandi = () => cikisYap();

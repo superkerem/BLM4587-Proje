@@ -17,6 +17,7 @@ namespace api.Data
         public DbSet<KutuphaneMasasi> KutuphaneMasalari { get; set; }
         public DbSet<Etkinlik> Etkinlikler { get; set; }
         public DbSet<KayipEsya> KayipEsyalar { get; set; }
+        public DbSet<Duyuru> Duyurular { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,7 +39,6 @@ namespace api.Data
                 .HasIndex(m => m.MasaNo)
                 .IsUnique();
 
-            // Derslik veya akademisyen silinirse bağlı dersler sessizce silinmesin.
             modelBuilder.Entity<Ders>()
                 .HasOne(d => d.Derslik)
                 .WithMany(d => d.Dersler)
@@ -51,7 +51,6 @@ namespace api.Data
                 .HasForeignKey(d => d.AkademisyenId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Kullanıcı silinince masa rezervasyonu boşa çıkar.
             modelBuilder.Entity<KutuphaneMasasi>()
                 .HasOne(m => m.RezerveEdenKullanici)
                 .WithMany(k => k.RezerveMasalar)
@@ -63,6 +62,12 @@ namespace api.Data
                 .WithMany(k => k.BildirilenEsyalar)
                 .HasForeignKey(e => e.BildirenKullaniciId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Duyuru>()
+                .HasOne(d => d.Yazar)
+                .WithMany(k => k.Duyurular)
+                .HasForeignKey(d => d.YazarId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

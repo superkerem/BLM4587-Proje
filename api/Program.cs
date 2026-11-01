@@ -69,8 +69,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             RoleClaimType = "role"
         };
 
-        // Web projesindeki /Giris ve /ErisimEngellendi yönlendirmelerinin API karşılığı:
-        // yönlendirme yerine 401 / 403 durum kodu ve Türkçe mesaj döner.
         options.Events = new JwtBearerEvents
         {
             OnChallenge = async context =>

@@ -18,6 +18,7 @@ class ApiSabitleri {
   static const String giris = '/api/hesap/giris';
   static const String ben = '/api/hesap/ben';
   static const String yonetimKullanicilar = '/api/yonetim/kullanicilar';
+  static const String duyurular = '/api/duyurular';
 
   static const Duration zamanAsimi = Duration(seconds: 15);
 }

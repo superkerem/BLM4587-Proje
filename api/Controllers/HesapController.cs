@@ -54,7 +54,6 @@ namespace api.Controllers
 
             await _userManager.AddToRoleAsync(kullanici, Roller.Kullanici);
 
-            // Web projesinde kayıttan sonra giriş yaptırılıyordu; burada da hemen token döner.
             return Ok(await OturumOlustur(kullanici));
         }
 

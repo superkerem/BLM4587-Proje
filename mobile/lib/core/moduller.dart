@@ -23,7 +23,7 @@ class Moduller {
     baslik: 'Kampüs Haritası',
     ikon: Icons.map,
     rota: '/kampus/harita',
-    aciklama: 'Fakülteleri, binaları ve önemli noktaları harita üzerinde görüntüleyin.',
+    aciklama: 'Fakülteleri ve önemli noktaları harita üzerinde görün.',
   );
 
   static const derslikBul = Modul(

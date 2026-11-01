@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'core/tema.dart';
 import 'screens/ana_sayfa.dart';
 import 'screens/erisim_engellendi_ekrani.dart';
 import 'screens/giris_ekrani.dart';
@@ -46,8 +47,6 @@ class _KampusPortaliAppState extends State<KampusPortaliApp> {
     super.dispose();
   }
 
-  // Giriş/çıkış olunca üstteki ekranlar (Kayıt, Yönetim) kapatılır;
-  // kök ekranı ise aşağıdaki ListenableBuilder Giriş veya Ana Sayfa olarak seçer.
   void _oturumDegisti() {
     if (_girisYapildi != _oturum.girisYapildi) {
       _girisYapildi = _oturum.girisYapildi;
@@ -55,8 +54,6 @@ class _KampusPortaliAppState extends State<KampusPortaliApp> {
     }
   }
 
-  // Web'deki AuthorizeFolder("/Yonetim", "SadeceYonetici") ve AuthorizeFolder("/Kampus")
-  // + LoginPath/AccessDeniedPath karşılığı.
   Route<dynamic> _rotaOlustur(RouteSettings ayarlar) {
     final ad = ayarlar.name ?? '/';
     Widget ekran;
@@ -103,10 +100,7 @@ class _KampusPortaliAppState extends State<KampusPortaliApp> {
       title: 'AÜ Hub Mobil',
       debugShowCheckedModeBanner: false,
       navigatorKey: _navigatorKey,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue.shade700),
-        useMaterial3: true,
-      ),
+      theme: Tema.acik,
       home: ListenableBuilder(
         listenable: _oturum,
         builder: (context, _) => _oturum.girisYapildi ? const AnaSayfa() : const GirisEkrani(),

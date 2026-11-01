@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
-    // Web projesindeki AuthorizeFolder("/Yonetim", "SadeceYonetici") kuralının API karşılığı.
     [ApiController]
     [Route("api/yonetim")]
     [Authorize(Policy = Politikalar.SadeceYonetici)]

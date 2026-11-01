@@ -8,7 +8,7 @@ void main() {
   testWidgets('Giriş formu boş gönderilince alan hataları görünür', (tester) async {
     await tester.pumpWidget(const MaterialApp(home: GirisEkrani()));
 
-    await tester.tap(find.text('Giriş Yap'));
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Giriş Yap'));
     await tester.pump();
 
     expect(find.text('Öğrenci numarası veya e-posta zorunludur.'), findsOneWidget);

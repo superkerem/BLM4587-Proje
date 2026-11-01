@@ -84,6 +84,11 @@ OpenAPI belgesi: `http://localhost:5135/openapi/v1.json`. Uç noktaları denemek
 | `POST /api/hesap/giris` | Herkes | Öğrenci no veya e-posta + şifre ile giriş, token döner |
 | `GET /api/hesap/ben` | Giriş yapmış | Token sahibinin bilgileri ve rolleri |
 | `GET /api/yonetim/kullanicilar` | Yalnızca `Yonetici` | Tüm kullanıcılar ve rolleri |
+| `GET /api/duyurular` | Giriş yapmış | Duyurular (önemliler üstte, yeniden eskiye) |
+| `GET /api/duyurular/{id}` | Giriş yapmış | Tek duyuru |
+| `POST /api/duyurular` | Yalnızca `Yonetici` | Duyuru ekler (yazar ve tarih API'de atanır) |
+| `PUT /api/duyurular/{id}` | Yalnızca `Yonetici` | Duyuru günceller |
+| `DELETE /api/duyurular/{id}` | Yalnızca `Yonetici` | Duyuru siler |
 
 Giriş yapmadan korumalı uç noktaya gelen istek `401`, rolü yetmeyen istek `403` alır.
 
@@ -125,7 +130,7 @@ API adresi `mobile/lib/core/constants/api_constants.dart` dosyasındaki `ApiSabi
 
 | Tablo | İlişkiler |
 |---|---|
-| `Kullanicilar` (Identity) | KutuphaneMasalari (rezerve eden), KayipEsyalar (bildiren) |
+| `Kullanicilar` (Identity) | KutuphaneMasalari (rezerve eden), KayipEsyalar (bildiren), Duyurular (yazar) |
 | `Roller` (Identity) | KullaniciRolleri |
 | `KullaniciRolleri` (Identity) | Kullanicilar, Roller (çoka-çok ara tablo) |
 | `Akademisyenler` | Dersler |
@@ -134,5 +139,6 @@ API adresi `mobile/lib/core/constants/api_constants.dart` dosyasındaki `ApiSabi
 | `KutuphaneMasalari` | Kullanicilar |
 | `Etkinlikler` | - |
 | `KayipEsyalar` | Kullanicilar |
+| `Duyurular` | Kullanicilar (yazar; yazar silinirse boşa çıkar) |
 
 Identity ayrıca `AspNetUserClaims`, `AspNetUserLogins`, `AspNetUserTokens` ve `AspNetRoleClaims` tablolarını oluşturur.

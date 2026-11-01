@@ -58,18 +58,22 @@ lib/
 ├── core/
 │   ├── constants/api_constants.dart  → API adresi ve uç noktalar
 │   ├── dogrulayicilar.dart           → Form doğrulama kuralları (API'deki Data Annotations karşılığı)
-│   └── roller.dart                   → Rol adları (Yonetici, Kullanici)
-├── models/kullanici.dart
+│   ├── moduller.dart                 → Kampüs modüllerinin başlık, ikon, rota ve açıklamaları
+│   ├── roller.dart                   → Rol adları (Yonetici, Kullanici)
+│   └── tema.dart                     → Renkler ve Türkçe tarih biçimi
+├── models/                           → kullanici.dart, duyuru.dart
 ├── services/
 │   ├── api_istemcisi.dart            → HTTP istekleri, JWT başlığı, hata çözümleme
-│   └── oturum_servisi.dart           → Giriş/kayıt/çıkış, token saklama
+│   ├── oturum_servisi.dart           → Giriş/kayıt/çıkış, token saklama
+│   └── duyuru_servisi.dart           → Duyuruları API'den çeker
 ├── screens/
 │   ├── giris_ekrani.dart
 │   ├── kayit_ekrani.dart
-│   ├── ana_sayfa.dart                → Role göre değişen menü
+│   ├── ana_sayfa.dart                → Karşılama, modül kartları ve duyurular
+│   ├── kampus/                       → Modül ekranları (iskelet)
 │   ├── erisim_engellendi_ekrani.dart
 │   └── yonetim/kullanicilar_ekrani.dart  → Yalnızca Yönetici
-├── widgets/form_ogeleri.dart
+├── widgets/                          → form_ogeleri, panel_ogeleri, yan_menu, modul_iskeleti
 └── main.dart                         → Rotalar ve rol kontrolü
 ```
 

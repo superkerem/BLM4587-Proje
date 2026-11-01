@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-// Henüz içeriği yazılmamış modül ekranlarının ortak görünümü:
-// AppBar'da başlık, ortada ikon, kısa açıklama ve "Yakında" alanı.
+import '../core/tema.dart';
+import 'panel_ogeleri.dart';
+
 class ModulIskeleti extends StatelessWidget {
   const ModulIskeleti({
     super.key,
@@ -16,54 +17,48 @@ class ModulIskeleti extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final renkler = Theme.of(context).colorScheme;
-
     return Scaffold(
       appBar: AppBar(title: Text(baslik)),
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(ikon, size: 72, color: renkler.primary),
-              const SizedBox(height: 16),
-              Text(
-                baslik,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                aciklama,
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.grey),
-              ),
-              const SizedBox(height: 24),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                decoration: BoxDecoration(
-                  color: renkler.secondaryContainer,
-                  borderRadius: BorderRadius.circular(12),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(color: Renkler.vurgu, borderRadius: BorderRadius.circular(Tema.kose)),
+            child: Row(
+              children: [
+                Container(
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(Tema.kose)),
+                  child: Icon(ikon, color: Renkler.vurgu),
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.schedule, color: renkler.onSecondaryContainer),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Yakında',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: renkler.onSecondaryContainer,
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        baslik,
+                        style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 4),
+                      Text(aciklama, style: const TextStyle(color: Colors.white)),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+          const SizedBox(height: 20),
+          BosDurum(
+            ikon: ikon,
+            baslik: 'Bu modül hazırlanıyor',
+            aciklama: 'İçerik sonraki haftalarda eklenecek.',
+            dugmeMetni: 'Ana Sayfaya Dön',
+            dugmeyeBasilinca: () => Navigator.of(context).popUntil((route) => route.isFirst),
+          ),
+        ],
       ),
     );
   }
