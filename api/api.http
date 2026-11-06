@@ -60,3 +60,45 @@ Content-Type: application/json
 ### Duyuru sil
 DELETE {{api_HostAddress}}/api/duyurular/1
 Authorization: Bearer {{giris.response.body.token}}
+
+### Kayıp eşya ilanları (giriş yapmış herkes)
+GET {{api_HostAddress}}/api/kayip-esyalar
+Authorization: Bearer {{giris.response.body.token}}
+
+### Sadece teslim edilmemiş (bekleyen) ilanlar
+GET {{api_HostAddress}}/api/kayip-esyalar?teslimEdilmemis=true
+Authorization: Bearer {{giris.response.body.token}}
+
+### Kayıp eşya ilanı getir
+GET {{api_HostAddress}}/api/kayip-esyalar/1
+Authorization: Bearer {{giris.response.body.token}}
+
+### Kayıp eşya ilanı ekle (bildiren kişi token'dan alınır)
+POST {{api_HostAddress}}/api/kayip-esyalar
+Authorization: Bearer {{giris.response.body.token}}
+Content-Type: application/json
+
+{
+  "baslik": "Siyah sırt çantası",
+  "aciklama": "İçinde mühendislik matematiği kitabı ve mavi bir matara var.",
+  "bulunanYer": "Mühendislik Fakültesi B blok kantin",
+  "bulunmaTarihi": "2026-11-05",
+  "teslimEdildiMi": false
+}
+
+### Kayıp eşya ilanı güncelle (sadece ekleyen kişi ya da Yonetici, diğerlerine 403)
+PUT {{api_HostAddress}}/api/kayip-esyalar/1
+Authorization: Bearer {{giris.response.body.token}}
+Content-Type: application/json
+
+{
+  "baslik": "Siyah sırt çantası",
+  "aciklama": "Sahibine teslim edildi.",
+  "bulunanYer": "Mühendislik Fakültesi B blok kantin",
+  "bulunmaTarihi": "2026-11-05",
+  "teslimEdildiMi": true
+}
+
+### Kayıp eşya ilanı sil (sadece ekleyen kişi ya da Yonetici, diğerlerine 403)
+DELETE {{api_HostAddress}}/api/kayip-esyalar/1
+Authorization: Bearer {{giris.response.body.token}}
