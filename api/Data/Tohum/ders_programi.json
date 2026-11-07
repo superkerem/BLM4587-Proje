@@ -1,0 +1,793 @@
+{
+ "derslikler": [
+  {
+   "id": 1,
+   "ad": "Derslik 1",
+   "mekanId": 2,
+   "not": null
+  },
+  {
+   "id": 2,
+   "ad": "Derslik 2",
+   "mekanId": 2,
+   "not": null
+  },
+  {
+   "id": 3,
+   "ad": "Derslik 3",
+   "mekanId": 2,
+   "not": null
+  },
+  {
+   "id": 4,
+   "ad": "Derslik 4",
+   "mekanId": 2,
+   "not": null
+  },
+  {
+   "id": 5,
+   "ad": "LAB 1",
+   "mekanId": 2,
+   "not": null
+  },
+  {
+   "id": 6,
+   "ad": "LAB 3",
+   "mekanId": 2,
+   "not": null
+  },
+  {
+   "id": 7,
+   "ad": "Android Dersliği",
+   "mekanId": 2,
+   "not": null
+  },
+  {
+   "id": 8,
+   "ad": "Yapay Zeka Dersliği H1",
+   "mekanId": 5,
+   "not": "Yapay Zeka Bölümü dersliği"
+  },
+  {
+   "id": 9,
+   "ad": "Yapay Zeka Dersliği J2",
+   "mekanId": 5,
+   "not": "Yapay Zeka Bölümü dersliği"
+  },
+  {
+   "id": 10,
+   "ad": "BME2 Dersliği",
+   "mekanId": 6,
+   "not": "Biyomedikal Mühendisliği Bölümü dersliği"
+  },
+  {
+   "id": 11,
+   "ad": "Yazılım Mühendisliği Dersliği 7",
+   "mekanId": 3,
+   "not": null
+  },
+  {
+   "id": 12,
+   "ad": "D Blok Servis Lab",
+   "mekanId": null,
+   "not": "Tandoğan Yerleşkesi"
+  }
+ ],
+ "dersler": [
+  {
+   "id": 1,
+   "kod": "COM1007",
+   "dersAdi": "COMPUTER PROGRAMMING I",
+   "labMi": false,
+   "grup": "İngilizce 1. Sınıf",
+   "gun": 1,
+   "baslangic": "09:30",
+   "bitis": "11:20",
+   "derslikId": 1
+  },
+  {
+   "id": 2,
+   "kod": "ENG101",
+   "dersAdi": "DEVELOPMENT OF READING AND WRITING SKILLS IN ENGLISH I",
+   "labMi": false,
+   "grup": "İngilizce 1. Sınıf",
+   "gun": 1,
+   "baslangic": "13:30",
+   "bitis": "17:20",
+   "derslikId": 4
+  },
+  {
+   "id": 3,
+   "kod": "PHY0105",
+   "dersAdi": "PHYSICS I",
+   "labMi": true,
+   "grup": "İngilizce 1. Sınıf",
+   "gun": 2,
+   "baslangic": "15:30",
+   "bitis": "17:20",
+   "derslikId": 12
+  },
+  {
+   "id": 4,
+   "kod": "COM1007",
+   "dersAdi": "COMPUTER PROGRAMMING I",
+   "labMi": false,
+   "grup": "İngilizce 1. Sınıf",
+   "gun": 3,
+   "baslangic": "09:30",
+   "bitis": "11:20",
+   "derslikId": 10
+  },
+  {
+   "id": 5,
+   "kod": "COM1007",
+   "dersAdi": "COMPUTER PROGRAMMING I",
+   "labMi": true,
+   "grup": "İngilizce 1. Sınıf",
+   "gun": 4,
+   "baslangic": "09:30",
+   "bitis": "11:20",
+   "derslikId": null
+  },
+  {
+   "id": 6,
+   "kod": "COM1015",
+   "dersAdi": "COM1015",
+   "labMi": false,
+   "grup": "İngilizce 1. Sınıf",
+   "gun": 4,
+   "baslangic": "15:30",
+   "bitis": "18:20",
+   "derslikId": 2
+  },
+  {
+   "id": 7,
+   "kod": "PHY0105",
+   "dersAdi": "PHYSICS I",
+   "labMi": false,
+   "grup": "İngilizce 1. Sınıf",
+   "gun": 5,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 8
+  },
+  {
+   "id": 8,
+   "kod": "MTH0143",
+   "dersAdi": "CALCULUS I",
+   "labMi": false,
+   "grup": "İngilizce 1. Sınıf",
+   "gun": 5,
+   "baslangic": "13:30",
+   "bitis": "17:20",
+   "derslikId": 8
+  },
+  {
+   "id": 9,
+   "kod": "ENG201",
+   "dersAdi": "ADVANCED READING AND COMMUNICATION TECHNIQUES IN ENGLISH I",
+   "labMi": false,
+   "grup": "İngilizce 2. Sınıf",
+   "gun": 1,
+   "baslangic": "08:30",
+   "bitis": "12:20",
+   "derslikId": 4
+  },
+  {
+   "id": 10,
+   "kod": "COM2077",
+   "dersAdi": "COM2077",
+   "labMi": false,
+   "grup": "İngilizce 2. Sınıf",
+   "gun": 1,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 1
+  },
+  {
+   "id": 11,
+   "kod": "COM2039",
+   "dersAdi": "COM2039",
+   "labMi": false,
+   "grup": "İngilizce 2. Sınıf",
+   "gun": 2,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 1
+  },
+  {
+   "id": 12,
+   "kod": "COM2067",
+   "dersAdi": "COM2067",
+   "labMi": false,
+   "grup": "İngilizce 2. Sınıf",
+   "gun": 2,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 2
+  },
+  {
+   "id": 13,
+   "kod": "COM2067",
+   "dersAdi": "COM2067 Laboratuvarı",
+   "labMi": true,
+   "grup": "İngilizce 2. Sınıf",
+   "gun": 2,
+   "baslangic": "16:30",
+   "bitis": "18:20",
+   "derslikId": null
+  },
+  {
+   "id": 14,
+   "kod": "COM2077",
+   "dersAdi": "COM2077 Laboratuvarı",
+   "labMi": true,
+   "grup": "İngilizce 2. Sınıf",
+   "gun": 3,
+   "baslangic": "09:30",
+   "bitis": "11:20",
+   "derslikId": null
+  },
+  {
+   "id": 15,
+   "kod": "COM2501",
+   "dersAdi": "COM2501",
+   "labMi": false,
+   "grup": "İngilizce 2. Sınıf",
+   "gun": 3,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 2
+  },
+  {
+   "id": 16,
+   "kod": "COM2043",
+   "dersAdi": "COM2043",
+   "labMi": false,
+   "grup": "İngilizce 2. Sınıf",
+   "gun": 4,
+   "baslangic": "15:30",
+   "bitis": "18:20",
+   "derslikId": 1
+  },
+  {
+   "id": 17,
+   "kod": "COM2043",
+   "dersAdi": "COM2043 Laboratuvarı",
+   "labMi": true,
+   "grup": "İngilizce 2. Sınıf",
+   "gun": 5,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": null
+  },
+  {
+   "id": 18,
+   "kod": "COM2553",
+   "dersAdi": "FILE ORGANIZATION",
+   "labMi": false,
+   "grup": "İngilizce 2. Sınıf",
+   "gun": 5,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 11
+  },
+  {
+   "id": 19,
+   "kod": "COM3533",
+   "dersAdi": "COM3533",
+   "labMi": false,
+   "grup": "İngilizce 3. Sınıf",
+   "gun": 1,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 3
+  },
+  {
+   "id": 20,
+   "kod": "COM3023",
+   "dersAdi": "COM3023",
+   "labMi": false,
+   "grup": "İngilizce 3. Sınıf",
+   "gun": 3,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 4
+  },
+  {
+   "id": 21,
+   "kod": "COM3033",
+   "dersAdi": "COM3033",
+   "labMi": false,
+   "grup": "İngilizce 3. Sınıf",
+   "gun": 3,
+   "baslangic": "14:00",
+   "bitis": "16:20",
+   "derslikId": 1
+  },
+  {
+   "id": 22,
+   "kod": "COM3073",
+   "dersAdi": "COM3073",
+   "labMi": false,
+   "grup": "İngilizce 3. Sınıf",
+   "gun": 4,
+   "baslangic": "10:30",
+   "bitis": "12:20",
+   "derslikId": 9
+  },
+  {
+   "id": 23,
+   "kod": "COM3033",
+   "dersAdi": "COM3033 Laboratuvarı",
+   "labMi": true,
+   "grup": "İngilizce 3. Sınıf",
+   "gun": 4,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": null
+  },
+  {
+   "id": 24,
+   "kod": "COM3551",
+   "dersAdi": "COM3551",
+   "labMi": false,
+   "grup": "İngilizce 3. Sınıf",
+   "gun": 5,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 1
+  },
+  {
+   "id": 25,
+   "kod": "COM3067",
+   "dersAdi": "COM3067",
+   "labMi": false,
+   "grup": "İngilizce 3. Sınıf",
+   "gun": 5,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 2
+  },
+  {
+   "id": 26,
+   "kod": "COM3067",
+   "dersAdi": "COM3067 Laboratuvarı",
+   "labMi": true,
+   "grup": "İngilizce 3. Sınıf",
+   "gun": 5,
+   "baslangic": "16:30",
+   "bitis": "18:20",
+   "derslikId": null
+  },
+  {
+   "id": 27,
+   "kod": "COM4567",
+   "dersAdi": "INFORMATION SYSTEMS",
+   "labMi": false,
+   "grup": "İngilizce 4. Sınıf",
+   "gun": 2,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 3
+  },
+  {
+   "id": 28,
+   "kod": "COM4541",
+   "dersAdi": "COM4541",
+   "labMi": false,
+   "grup": "İngilizce 4. Sınıf",
+   "gun": 2,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 4
+  },
+  {
+   "id": 29,
+   "kod": "COM4573",
+   "dersAdi": "ARTIFICIAL NEURAL NETWORKS",
+   "labMi": false,
+   "grup": "İngilizce 4. Sınıf",
+   "gun": 4,
+   "baslangic": "10:00",
+   "bitis": "12:20",
+   "derslikId": 4
+  },
+  {
+   "id": 30,
+   "kod": "COM4569",
+   "dersAdi": "DATA MINING",
+   "labMi": false,
+   "grup": "İngilizce 4. Sınıf",
+   "gun": 4,
+   "baslangic": "15:30",
+   "bitis": "18:20",
+   "derslikId": 4
+  },
+  {
+   "id": 31,
+   "kod": "MAT0143",
+   "dersAdi": "Matematik I",
+   "labMi": false,
+   "grup": "Türkçe 1. Sınıf",
+   "gun": 1,
+   "baslangic": "10:30",
+   "bitis": "12:20",
+   "derslikId": 2
+  },
+  {
+   "id": 32,
+   "kod": "MAT0143",
+   "dersAdi": "Matematik I",
+   "labMi": false,
+   "grup": "Türkçe 1. Sınıf",
+   "gun": 1,
+   "baslangic": "13:30",
+   "bitis": "15:20",
+   "derslikId": 2
+  },
+  {
+   "id": 33,
+   "kod": "BLM1007",
+   "dersAdi": "Bilgisayar Programlama I",
+   "labMi": false,
+   "grup": "Türkçe 1. Sınıf",
+   "gun": 1,
+   "baslangic": "15:30",
+   "bitis": "17:20",
+   "derslikId": 2
+  },
+  {
+   "id": 34,
+   "kod": "BLM1007",
+   "dersAdi": "Bilgisayar Programlama I",
+   "labMi": false,
+   "grup": "Türkçe 1. Sınıf",
+   "gun": 2,
+   "baslangic": "09:30",
+   "bitis": "11:20",
+   "derslikId": 2
+  },
+  {
+   "id": 35,
+   "kod": "FZM0105",
+   "dersAdi": "Fizik I",
+   "labMi": true,
+   "grup": "Türkçe 1. Sınıf",
+   "gun": 2,
+   "baslangic": "13:30",
+   "bitis": "15:20",
+   "derslikId": 12
+  },
+  {
+   "id": 36,
+   "kod": "FZM0105",
+   "dersAdi": "Fizik I",
+   "labMi": false,
+   "grup": "Türkçe 1. Sınıf",
+   "gun": 3,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 9
+  },
+  {
+   "id": 37,
+   "kod": "BLM1015",
+   "dersAdi": "BLM1015",
+   "labMi": false,
+   "grup": "Türkçe 1. Sınıf",
+   "gun": 4,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 1
+  },
+  {
+   "id": 38,
+   "kod": "BLM1007",
+   "dersAdi": "Bilgisayar Programlama I",
+   "labMi": true,
+   "grup": "Türkçe 1. Sınıf",
+   "gun": 5,
+   "baslangic": "13:30",
+   "bitis": "15:20",
+   "derslikId": null
+  },
+  {
+   "id": 39,
+   "kod": "BLM2077",
+   "dersAdi": "BLM2077 Laboratuvarı",
+   "labMi": true,
+   "grup": "Türkçe 2. Sınıf",
+   "gun": 2,
+   "baslangic": "09:30",
+   "bitis": "11:20",
+   "derslikId": null
+  },
+  {
+   "id": 40,
+   "kod": "BLM2501",
+   "dersAdi": "BLM2501",
+   "labMi": false,
+   "grup": "Türkçe 2. Sınıf",
+   "gun": 2,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 6
+  },
+  {
+   "id": 41,
+   "kod": "BLM2043",
+   "dersAdi": "BLM2043",
+   "labMi": false,
+   "grup": "Türkçe 2. Sınıf",
+   "gun": 3,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 2
+  },
+  {
+   "id": 42,
+   "kod": "BLM2043",
+   "dersAdi": "BLM2043 Laboratuvarı",
+   "labMi": true,
+   "grup": "Türkçe 2. Sınıf",
+   "gun": 3,
+   "baslangic": "13:30",
+   "bitis": "15:20",
+   "derslikId": null
+  },
+  {
+   "id": 43,
+   "kod": "BLM2067",
+   "dersAdi": "BLM2067 Laboratuvarı",
+   "labMi": true,
+   "grup": "Türkçe 2. Sınıf",
+   "gun": 3,
+   "baslangic": "15:30",
+   "bitis": "17:20",
+   "derslikId": null
+  },
+  {
+   "id": 44,
+   "kod": "BLM2067",
+   "dersAdi": "BLM2067",
+   "labMi": false,
+   "grup": "Türkçe 2. Sınıf",
+   "gun": 4,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 2
+  },
+  {
+   "id": 45,
+   "kod": "BLM2537",
+   "dersAdi": "BLM2537",
+   "labMi": false,
+   "grup": "Türkçe 2. Sınıf",
+   "gun": 4,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 1
+  },
+  {
+   "id": 46,
+   "kod": "BLM2077",
+   "dersAdi": "BLM2077",
+   "labMi": false,
+   "grup": "Türkçe 2. Sınıf",
+   "gun": 5,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 2
+  },
+  {
+   "id": 47,
+   "kod": "BLM2039",
+   "dersAdi": "BLM2039",
+   "labMi": false,
+   "grup": "Türkçe 2. Sınıf",
+   "gun": 5,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 4
+  },
+  {
+   "id": 48,
+   "kod": "BLM3023",
+   "dersAdi": "BLM3023 Laboratuvarı",
+   "labMi": true,
+   "grup": "Türkçe 3. Sınıf",
+   "gun": 1,
+   "baslangic": "09:30",
+   "bitis": "11:20",
+   "derslikId": null
+  },
+  {
+   "id": 49,
+   "kod": "BLM3033",
+   "dersAdi": "BLM3033 Laboratuvarı",
+   "labMi": true,
+   "grup": "Türkçe 3. Sınıf",
+   "gun": 1,
+   "baslangic": "13:30",
+   "bitis": "15:20",
+   "derslikId": null
+  },
+  {
+   "id": 50,
+   "kod": "BLM3067",
+   "dersAdi": "BLM3067 Laboratuvarı",
+   "labMi": true,
+   "grup": "Türkçe 3. Sınıf",
+   "gun": 1,
+   "baslangic": "15:30",
+   "bitis": "17:20",
+   "derslikId": null
+  },
+  {
+   "id": 51,
+   "kod": "BLM3557",
+   "dersAdi": "BLM3557",
+   "labMi": false,
+   "grup": "Türkçe 3. Sınıf",
+   "gun": 2,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 4
+  },
+  {
+   "id": 52,
+   "kod": "BLM3033",
+   "dersAdi": "BLM3033",
+   "labMi": false,
+   "grup": "Türkçe 3. Sınıf",
+   "gun": 2,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 1
+  },
+  {
+   "id": 53,
+   "kod": "BLM3067",
+   "dersAdi": "BLM3067",
+   "labMi": false,
+   "grup": "Türkçe 3. Sınıf",
+   "gun": 3,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 1
+  },
+  {
+   "id": 54,
+   "kod": "BLM3533",
+   "dersAdi": "BLM3533",
+   "labMi": false,
+   "grup": "Türkçe 3. Sınıf",
+   "gun": 3,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 4
+  },
+  {
+   "id": 55,
+   "kod": "BLM3073",
+   "dersAdi": "BLM3073",
+   "labMi": false,
+   "grup": "Türkçe 3. Sınıf",
+   "gun": 4,
+   "baslangic": "14:30",
+   "bitis": "16:20",
+   "derslikId": 9
+  },
+  {
+   "id": 56,
+   "kod": "BLM3551",
+   "dersAdi": "BLM3551",
+   "labMi": false,
+   "grup": "Türkçe 3. Sınıf",
+   "gun": 5,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 4
+  },
+  {
+   "id": 57,
+   "kod": "BLM3023",
+   "dersAdi": "BLM3023",
+   "labMi": false,
+   "grup": "Türkçe 3. Sınıf",
+   "gun": 5,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 1
+  },
+  {
+   "id": 58,
+   "kod": "BLM4551",
+   "dersAdi": "BLM4551",
+   "labMi": false,
+   "grup": "Türkçe 4. Sınıf",
+   "gun": 1,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 7
+  },
+  {
+   "id": 59,
+   "kod": "BLM4573",
+   "dersAdi": "Yapay Sinir Ağları",
+   "labMi": false,
+   "grup": "Türkçe 4. Sınıf",
+   "gun": 1,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 3
+  },
+  {
+   "id": 60,
+   "kod": "BLM4583",
+   "dersAdi": "BLM4583",
+   "labMi": false,
+   "grup": "Türkçe 4. Sınıf",
+   "gun": 2,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 5
+  },
+  {
+   "id": 61,
+   "kod": "BLM4541",
+   "dersAdi": "BLM4541",
+   "labMi": false,
+   "grup": "Türkçe 4. Sınıf",
+   "gun": 2,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 3
+  },
+  {
+   "id": 62,
+   "kod": "BLM4581",
+   "dersAdi": "Ağ Tabanlı Teknolojiler ve Uygulamaları",
+   "labMi": false,
+   "grup": "Türkçe 4. Sınıf",
+   "gun": 3,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 3
+  },
+  {
+   "id": 63,
+   "kod": "BLM4587",
+   "dersAdi": "BLM4587",
+   "labMi": false,
+   "grup": "Türkçe 4. Sınıf",
+   "gun": 3,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 3
+  },
+  {
+   "id": 64,
+   "kod": "BLM4559",
+   "dersAdi": "BLM4559",
+   "labMi": false,
+   "grup": "Türkçe 4. Sınıf",
+   "gun": 5,
+   "baslangic": "09:30",
+   "bitis": "12:20",
+   "derslikId": 3
+  },
+  {
+   "id": 65,
+   "kod": "BLM4561",
+   "dersAdi": "BLM4561",
+   "labMi": false,
+   "grup": "Türkçe 4. Sınıf",
+   "gun": 5,
+   "baslangic": "13:30",
+   "bitis": "16:20",
+   "derslikId": 3
+  }
+ ]
+}

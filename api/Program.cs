@@ -167,5 +167,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 await RolVeYoneticiTohumlama.CalistirAsync(app.Services);
+await KampusVerisiTohumlama.CalistirAsync(app.Services);
 
 app.Run();
