@@ -3,13 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'core/tema.dart';
+import 'models/kayip_esya.dart';
 import 'screens/ana_sayfa.dart';
 import 'screens/erisim_engellendi_ekrani.dart';
 import 'screens/giris_ekrani.dart';
 import 'screens/kampus/derslik_bul_ekrani.dart';
 import 'screens/kampus/etkinlikler_ekrani.dart';
 import 'screens/kampus/harita_ekrani.dart';
+import 'screens/kampus/kayip_esya_detay_ekrani.dart';
 import 'screens/kampus/kayip_esya_ekrani.dart';
+import 'screens/kampus/kayip_esya_form_ekrani.dart';
 import 'screens/kampus/kutuphane_ekrani.dart';
 import 'screens/kampus/yemekhane_ekrani.dart';
 import 'screens/kayit_ekrani.dart';
@@ -80,6 +83,13 @@ class _KampusPortaliAppState extends State<KampusPortaliApp> {
           '/kampus/yemekhane' => const YemekhaneEkrani(),
           '/kampus/etkinlikler' => const EtkinliklerEkrani(),
           '/kampus/kayip-esya' => const KayipEsyaEkrani(),
+          '/kampus/kayip-esya/detay' => switch (ayarlar.arguments) {
+              final KayipEsya esya => KayipEsyaDetayEkrani(esya: esya),
+              _ => const KayipEsyaEkrani(),
+            },
+          '/kampus/kayip-esya/form' => KayipEsyaFormEkrani(
+              esya: ayarlar.arguments is KayipEsya ? ayarlar.arguments as KayipEsya : null,
+            ),
           _ => const AnaSayfa(),
         };
       }

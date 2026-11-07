@@ -35,6 +35,11 @@ class ApiIstemcisi {
 
   Future<dynamic> post(String yol, Map<String, dynamic> govde) => _gonder('POST', yol, govde);
 
+  Future<dynamic> put(String yol, Map<String, dynamic> govde) => _gonder('PUT', yol, govde);
+
+  // 204 No Content döndüğünde gövde boş olur ve null döner.
+  Future<dynamic> delete(String yol) => _gonder('DELETE', yol);
+
   Future<dynamic> _gonder(String metot, String yol, [Map<String, dynamic>? govde]) async {
     final uri = Uri.parse('${ApiSabitleri.baseUrl}$yol');
     final basliklar = <String, String>{
@@ -45,9 +50,12 @@ class ApiIstemcisi {
 
     final http.Response yanit;
     try {
-      final istek = metot == 'POST'
-          ? _client.post(uri, headers: basliklar, body: jsonEncode(govde))
-          : _client.get(uri, headers: basliklar);
+      final istek = switch (metot) {
+        'POST' => _client.post(uri, headers: basliklar, body: jsonEncode(govde)),
+        'PUT' => _client.put(uri, headers: basliklar, body: jsonEncode(govde)),
+        'DELETE' => _client.delete(uri, headers: basliklar),
+        _ => _client.get(uri, headers: basliklar),
+      };
       yanit = await istek.timeout(ApiSabitleri.zamanAsimi);
     } on TimeoutException {
       throw const ApiHatasi(0, 'Sunucu yanıt vermedi. Lütfen tekrar deneyin.');
