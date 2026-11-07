@@ -19,7 +19,9 @@ class _KayipEsyaEkraniState extends State<KayipEsyaEkrani> {
 
   Future<void> _yenile() async {
     final yeni = KayipEsyaServisi.listele(sadeceBekleyenler: _sadeceBekleyenler);
-    setState(() => _ilanlar = yeni);
+    setState(() {
+      _ilanlar = yeni;
+    });
     try {
       await yeni;
     } catch (_) {
