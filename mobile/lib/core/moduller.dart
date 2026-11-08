@@ -30,7 +30,7 @@ class Moduller {
     baslik: 'Derslik Bulucu',
     ikon: Icons.meeting_room,
     rota: '/kampus/derslik-bul',
-    aciklama: 'Dersliklerin hangi binada ve katta olduğunu kolayca bulun.',
+    aciklama: 'Derslerinin nerede olduğunu ve şu an boş olan derslikleri görün.',
   );
 
   static const kutuphane = Modul(
