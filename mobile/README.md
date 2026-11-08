@@ -60,23 +60,31 @@ lib/
 │   ├── dogrulayicilar.dart           → Form doğrulama kuralları (API'deki Data Annotations karşılığı)
 │   ├── moduller.dart                 → Kampüs modüllerinin başlık, ikon, rota ve açıklamaları
 │   ├── roller.dart                   → Rol adları (Yonetici, Kullanici)
-│   └── tema.dart                     → Renkler ve Türkçe tarih biçimi
-├── models/                           → kullanici.dart, duyuru.dart
+│   ├── tema.dart                     → Renkler ve Türkçe tarih biçimi
+│   └── turkiye_saati.dart            → Türkiye saati (UTC+3) ve saat biçimleri
+├── models/                           → kullanici.dart, duyuru.dart, kayip_esya.dart, mekan.dart, ders_programi.dart
 ├── services/
 │   ├── api_istemcisi.dart            → HTTP istekleri, JWT başlığı, hata çözümleme
 │   ├── oturum_servisi.dart           → Giriş/kayıt/çıkış, token saklama
-│   └── duyuru_servisi.dart           → Duyuruları API'den çeker
+│   ├── duyuru_servisi.dart           → Duyuruları API'den çeker
+│   ├── kayip_esya_servisi.dart       → Kayıp eşya ilanları
+│   └── kampus_servisi.dart           → Binalar, ders programı, seçilen dersler ve sınavlar
 ├── screens/
 │   ├── giris_ekrani.dart
 │   ├── kayit_ekrani.dart
 │   ├── ana_sayfa.dart                → Karşılama, modül kartları ve duyurular
-│   ├── kampus/                       → Modül ekranları (iskelet)
+│   ├── kampus/                       → Modül ekranları (harita, derslik bulucu, kayıp eşya, diğerleri iskelet)
 │   ├── erisim_engellendi_ekrani.dart
 │   └── yonetim/kullanicilar_ekrani.dart  → Yalnızca Yönetici
 ├── widgets/                          → form_ogeleri, panel_ogeleri, yan_menu, modul_iskeleti
 └── main.dart                         → Rotalar ve rol kontrolü
 ```
 
+
+## Kampüs Haritası
+
+Harita `flutter_map` paketiyle OpenStreetMap altlığı üzerinde çizilir; binalar API'den GeoJSON olarak gelir.
+`flutter_map` kamerayı eğemediği için binalar duvar, çatı ve gölge katmanlarıyla 3B görünümde çizilir.
 
 ---
 
