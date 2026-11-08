@@ -20,6 +20,10 @@ class ApiSabitleri {
   static const String yonetimKullanicilar = '/api/yonetim/kullanicilar';
   static const String duyurular = '/api/duyurular';
   static const String kayipEsyalar = '/api/kayip-esyalar';
+  static const String mekanlar = '/api/mekanlar';
+  static const String dersProgrami = '/api/ders-programi';
+  static const String derslerim = '/api/derslerim';
+  static const String sinavlarim = '/api/derslerim/sinavlar';
 
   static const Duration zamanAsimi = Duration(seconds: 15);
 }
