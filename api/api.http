@@ -102,3 +102,32 @@ Content-Type: application/json
 ### Kayıp eşya ilanı sil (sadece ekleyen kişi ya da Yonetici, diğerlerine 403)
 DELETE {{api_HostAddress}}/api/kayip-esyalar/1
 Authorization: Bearer {{giris.response.body.token}}
+
+### Kampüs binaları (harita)
+GET {{api_HostAddress}}/api/mekanlar
+Authorization: Bearer {{giris.response.body.token}}
+
+### Tek bina ve derslikleri
+GET {{api_HostAddress}}/api/mekanlar/2
+Authorization: Bearer {{giris.response.body.token}}
+
+### Ders programı (derslikler + dersler)
+GET {{api_HostAddress}}/api/ders-programi
+Authorization: Bearer {{giris.response.body.token}}
+
+### Seçtiğim dersler
+GET {{api_HostAddress}}/api/derslerim
+Authorization: Bearer {{giris.response.body.token}}
+
+### Seçtiğim dersleri kaydet
+PUT {{api_HostAddress}}/api/derslerim
+Authorization: Bearer {{giris.response.body.token}}
+Content-Type: application/json
+
+{
+  "kodlar": ["BLM4581", "BLM4587"]
+}
+
+### Seçtiğim derslerin yaklaşan sınavları
+GET {{api_HostAddress}}/api/derslerim/sinavlar
+Authorization: Bearer {{giris.response.body.token}}

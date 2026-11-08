@@ -195,7 +195,7 @@ namespace api.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AkademisyenId")
+                    b.Property<int?>("AkademisyenId")
                         .HasColumnType("integer");
 
                     b.Property<TimeOnly>("BaslangicSaati")
@@ -206,20 +206,35 @@ namespace api.Migrations
 
                     b.Property<string>("DersAdi")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
-                    b.Property<int>("DerslikId")
+                    b.Property<int?>("DerslikId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Grup")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<int>("Gun")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Kod")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<bool>("LabMi")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AkademisyenId");
 
                     b.HasIndex("DerslikId");
+
+                    b.HasIndex("Kod");
 
                     b.ToTable("Dersler");
                 });
@@ -234,29 +249,25 @@ namespace api.Migrations
 
                     b.Property<string>("Ad")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
-                    b.Property<string>("Blok")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<int>("Kapasite")
+                    b.Property<int?>("Kapasite")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Kat")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
+                    b.Property<int?>("MekanId")
+                        .HasColumnType("integer");
 
-                    b.Property<bool>("MusaitMi")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Not")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Ad")
                         .IsUnique();
+
+                    b.HasIndex("MekanId");
 
                     b.ToTable("Derslikler");
                 });
@@ -457,6 +468,30 @@ namespace api.Migrations
                     b.ToTable("Kullanicilar", (string)null);
                 });
 
+            modelBuilder.Entity("api.Models.KullaniciDersi", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DersKodu")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<int>("KullaniciId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KullaniciId", "DersKodu")
+                        .IsUnique();
+
+                    b.ToTable("KullaniciDersleri");
+                });
+
             modelBuilder.Entity("api.Models.KutuphaneMasasi", b =>
                 {
                     b.Property<int>("Id")
@@ -496,6 +531,75 @@ namespace api.Migrations
                     b.HasIndex("RezerveEdenKullaniciId");
 
                     b.ToTable("KutuphaneMasalari");
+                });
+
+            modelBuilder.Entity("api.Models.Mekan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Ad")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<double>("Boylam")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Enlem")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Geometri")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
+                    b.Property<string>("Tur")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Mekanlar");
+                });
+
+            modelBuilder.Entity("api.Models.Sinav", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<TimeOnly>("BaslangicSaati")
+                        .HasColumnType("time without time zone");
+
+                    b.Property<TimeOnly>("BitisSaati")
+                        .HasColumnType("time without time zone");
+
+                    b.Property<string>("DersKodu")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<int?>("DerslikId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateOnly>("Tarih")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Tur")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DerslikId");
+
+                    b.ToTable("Sinavlar");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -554,18 +658,26 @@ namespace api.Migrations
                     b.HasOne("api.Models.Akademisyen", "Akademisyen")
                         .WithMany("Dersler")
                         .HasForeignKey("AkademisyenId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("api.Models.Derslik", "Derslik")
                         .WithMany("Dersler")
                         .HasForeignKey("DerslikId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Akademisyen");
 
                     b.Navigation("Derslik");
+                });
+
+            modelBuilder.Entity("api.Models.Derslik", b =>
+                {
+                    b.HasOne("api.Models.Mekan", "Mekan")
+                        .WithMany("Derslikler")
+                        .HasForeignKey("MekanId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Mekan");
                 });
 
             modelBuilder.Entity("api.Models.Duyuru", b =>
@@ -589,6 +701,17 @@ namespace api.Migrations
                     b.Navigation("BildirenKullanici");
                 });
 
+            modelBuilder.Entity("api.Models.KullaniciDersi", b =>
+                {
+                    b.HasOne("api.Models.Kullanici", "Kullanici")
+                        .WithMany("Dersleri")
+                        .HasForeignKey("KullaniciId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Kullanici");
+                });
+
             modelBuilder.Entity("api.Models.KutuphaneMasasi", b =>
                 {
                     b.HasOne("api.Models.Kullanici", "RezerveEdenKullanici")
@@ -597,6 +720,16 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("RezerveEdenKullanici");
+                });
+
+            modelBuilder.Entity("api.Models.Sinav", b =>
+                {
+                    b.HasOne("api.Models.Derslik", "Derslik")
+                        .WithMany()
+                        .HasForeignKey("DerslikId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Derslik");
                 });
 
             modelBuilder.Entity("api.Models.Akademisyen", b =>
@@ -613,9 +746,16 @@ namespace api.Migrations
                 {
                     b.Navigation("BildirilenEsyalar");
 
+                    b.Navigation("Dersleri");
+
                     b.Navigation("Duyurular");
 
                     b.Navigation("RezerveMasalar");
+                });
+
+            modelBuilder.Entity("api.Models.Mekan", b =>
+                {
+                    b.Navigation("Derslikler");
                 });
 #pragma warning restore 612, 618
         }

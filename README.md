@@ -59,6 +59,9 @@ dotnet ef database update
 > `dotnet ef migrations add MigrationAdi`
 >
 > `dotnet ef` komutları `Program.cs`'i çalıştırdığı için önce 2. adımdaki `Jwt:Anahtar` ayarlanmış olmalıdır.
+>
+> 3. haftada kampüs binaları, derslikler ve ders programı eklendi (`KampusHaritasi` migration'ı). Bu tablolar boşsa
+> API ilk açılışta `api/Data/Tohum/` klasöründeki JSON dosyalarından otomatik olarak doldurulur.
 
 ### 4. API'yi Başlat
 
@@ -91,6 +94,17 @@ OpenAPI belgesi: `http://localhost:5135/openapi/v1.json`. Uç noktaları denemek
 | `DELETE /api/duyurular/{id}` | Yalnızca `Yonetici` | Duyuru siler |
 
 Giriş yapmadan korumalı uç noktaya gelen istek `401`, rolü yetmeyen istek `403` alır.
+
+### Kampüs Haritası ve Derslik Bulucu (3. Hafta)
+
+| Uç nokta | Yetki | Açıklama |
+|---|---|---|
+| `GET /api/mekanlar` | Giriş yapmış | Kampüs binaları: ad, tür, konum, GeoJSON geometri ve derslikleri |
+| `GET /api/mekanlar/{id}` | Giriş yapmış | Tek bina |
+| `GET /api/ders-programi` | Giriş yapmış | Tüm derslikler ve ders oturumları |
+| `GET /api/derslerim` | Giriş yapmış | Kullanıcının seçtiği ders kodları |
+| `PUT /api/derslerim` | Giriş yapmış | Seçilen dersleri kaydeder (`{ "kodlar": [...] }`) |
+| `GET /api/derslerim/sinavlar` | Giriş yapmış | Seçilen derslerin bugünden sonraki sınavları |
 
 ---
 
@@ -125,20 +139,30 @@ API adresi `mobile/lib/core/constants/api_constants.dart` dosyasındaki `ApiSabi
 | Veritabanı | PostgreSQL |
 | ORM | Entity Framework Core 10 |
 | API Dokümantasyonu | OpenAPI / Swagger |
+| Harita | flutter_map + OpenStreetMap |
 
 ## Veritabanı Tabloları
 
 | Tablo | İlişkiler |
 |---|---|
-| `Kullanicilar` (Identity) | KutuphaneMasalari (rezerve eden), KayipEsyalar (bildiren), Duyurular (yazar) |
+| `Kullanicilar` (Identity) | KutuphaneMasalari (rezerve eden), KayipEsyalar (bildiren), Duyurular (yazar), KullaniciDersleri |
 | `Roller` (Identity) | KullaniciRolleri |
 | `KullaniciRolleri` (Identity) | Kullanicilar, Roller (çoka-çok ara tablo) |
 | `Akademisyenler` | Dersler |
-| `Derslikler` | Dersler |
+| `Derslikler` | Mekanlar, Dersler |
 | `Dersler` | Derslikler, Akademisyenler |
 | `KutuphaneMasalari` | Kullanicilar |
 | `Etkinlikler` | - |
 | `KayipEsyalar` | Kullanicilar |
 | `Duyurular` | Kullanicilar (yazar; yazar silinirse boşa çıkar) |
+| `Mekanlar` | Derslikler (bir binada birden çok derslik) |
+| `KullaniciDersleri` | Kullanicilar (kullanıcının seçtiği ders kodları) |
+| `Sinavlar` | Derslikler |
 
 Identity ayrıca `AspNetUserClaims`, `AspNetUserLogins`, `AspNetUserTokens` ve `AspNetRoleClaims` tablolarını oluşturur.
+
+## Harita Verisi Kaynağı
+
+Kampüs binalarının konum ve geometri verileri ile harita altlığı [OpenStreetMap](https://www.openstreetmap.org/copyright)'ten
+alınmıştır. Veriler © OpenStreetMap katkıcıları, [Open Database License (ODbL)](https://opendatacommons.org/licenses/odbl/)
+ile lisanslanmıştır. Uygulamadaki haritada da kaynak belirtilir.
