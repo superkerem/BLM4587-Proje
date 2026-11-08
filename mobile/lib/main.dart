@@ -77,7 +77,7 @@ class _KampusPortaliAppState extends State<KampusPortaliApp> {
         ekran = const GirisEkrani();
       } else {
         ekran = switch (ad) {
-          '/kampus/harita' => const HaritaEkrani(),
+          '/kampus/harita' => HaritaEkrani(seciliMekanId: ayarlar.arguments is int ? ayarlar.arguments as int : null),
           '/kampus/derslik-bul' => const DerslikBulEkrani(),
           '/kampus/kutuphane' => const KutuphaneEkrani(),
           '/kampus/yemekhane' => const YemekhaneEkrani(),
