@@ -20,7 +20,9 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
   Future<void> _yenile() async {
     final yeni = DuyuruServisi.listele();
-    setState(() => _duyurular = yeni);
+    setState(() {
+      _duyurular = yeni;
+    });
     await yeni.catchError((_) => <Duyuru>[]);
   }
 
