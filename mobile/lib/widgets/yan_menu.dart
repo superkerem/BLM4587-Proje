@@ -92,8 +92,15 @@ class YanMenu extends StatelessWidget {
                     _MenuBaglantisi(
                       ikon: Icons.admin_panel_settings_outlined,
                       baslik: 'Yönetim Paneli',
-                      aktif: aktifRota.startsWith('/yonetim'),
+                      aktif: aktifRota == '/yonetim/kullanicilar',
                       onTap: () => _git(context, '/yonetim/kullanicilar'),
+                    ),
+                  if (oturum.yoneticiMi)
+                    _MenuBaglantisi(
+                      ikon: Icons.campaign_outlined,
+                      baslik: 'Duyuru Yönetimi',
+                      aktif: aktifRota.startsWith('/yonetim/duyuru'),
+                      onTap: () => _git(context, '/yonetim/duyurular'),
                     ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(8, 8, 0, 4),

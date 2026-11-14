@@ -70,6 +70,16 @@ class Dogrulayicilar {
         uzunluk(deger, 'Öğrenci numarası veya e-posta', max: 100);
   }
 
+  // DuyuruIstegi.Baslik: [Required] + [StringLength(150, MinimumLength = 3)]
+  static String? duyuruBaslik(String? deger) {
+    return zorunlu(deger, 'Başlık') ?? uzunluk(deger, 'Başlık', min: 3, max: 150);
+  }
+
+  // DuyuruIstegi.Icerik: [Required] + [StringLength(2000)]
+  static String? duyuruIcerik(String? deger) {
+    return zorunlu(deger, 'İçerik') ?? uzunluk(deger, 'İçerik', max: 2000);
+  }
+
   // [Range(min, max)] - derslik kapasitesi, masa katı gibi sayısal alanlar için.
   static String? aralik(String? deger, String alanAdi, int min, int max) {
     final sayi = int.tryParse(deger?.trim() ?? '');

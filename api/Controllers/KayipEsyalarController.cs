@@ -60,7 +60,7 @@ namespace api.Controllers
             }
 
             var tarih = UtcTarih(istek.BulunmaTarihi!.Value);
-            if (tarih > DateTime.UtcNow)
+            if (tarih > DateTime.UtcNow.AddDays(1))
             {
                 return BadRequest(HataYaniti.Alan("bulunmaTarihi", "Bulunma tarihi ileri bir tarih olamaz."));
             }
@@ -101,7 +101,7 @@ namespace api.Controllers
             }
 
             var tarih = UtcTarih(istek.BulunmaTarihi!.Value);
-            if (tarih > DateTime.UtcNow)
+            if (tarih > DateTime.UtcNow.AddDays(1))
             {
                 return BadRequest(HataYaniti.Alan("bulunmaTarihi", "Bulunma tarihi ileri bir tarih olamaz."));
             }

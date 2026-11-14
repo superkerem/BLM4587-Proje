@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'core/tema.dart';
+import 'models/duyuru.dart';
 import 'models/kayip_esya.dart';
 import 'screens/ana_sayfa.dart';
 import 'screens/erisim_engellendi_ekrani.dart';
@@ -16,6 +17,8 @@ import 'screens/kampus/kayip_esya_form_ekrani.dart';
 import 'screens/kampus/kutuphane_ekrani.dart';
 import 'screens/kampus/yemekhane_ekrani.dart';
 import 'screens/kayit_ekrani.dart';
+import 'screens/yonetim/duyuru_form_ekrani.dart';
+import 'screens/yonetim/duyurular_ekrani.dart';
 import 'screens/yonetim/kullanicilar_ekrani.dart';
 import 'services/oturum_servisi.dart';
 
@@ -69,6 +72,10 @@ class _KampusPortaliAppState extends State<KampusPortaliApp> {
       } else {
         ekran = switch (ad) {
           '/yonetim/kullanicilar' => const KullanicilarEkrani(),
+          '/yonetim/duyurular' => const DuyurularEkrani(),
+          '/yonetim/duyuru-form' => DuyuruFormEkrani(
+              duyuru: ayarlar.arguments is Duyuru ? ayarlar.arguments as Duyuru : null,
+            ),
           _ => const ErisimEngellendiEkrani(),
         };
       }
