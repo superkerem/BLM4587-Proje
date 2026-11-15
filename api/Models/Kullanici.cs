@@ -22,7 +22,7 @@ namespace api.Models
 
         public DateTime KayitTarihi { get; set; } = DateTime.UtcNow;
 
-        public ICollection<KutuphaneMasasi> RezerveMasalar { get; set; } = new List<KutuphaneMasasi>();
+        public ICollection<KutuphaneRezervasyonu> KutuphaneRezervasyonlari { get; set; } = new List<KutuphaneRezervasyonu>();
         public ICollection<KayipEsya> BildirilenEsyalar { get; set; } = new List<KayipEsya>();
         public ICollection<Duyuru> Duyurular { get; set; } = new List<Duyuru>();
         public ICollection<KullaniciDersi> Dersleri { get; set; } = new List<KullaniciDersi>();
