@@ -21,6 +21,11 @@ namespace api.Data
             {
                 await DersPrograminiEkleAsync(context);
             }
+
+            if (!await context.KutuphaneMasalari.AnyAsync())
+            {
+                await KutuphaneMasalariniEkleAsync(context);
+            }
         }
 
         private static string DosyaYolu(string dosyaAdi) =>
@@ -107,6 +112,44 @@ namespace api.Data
 
             await context.SaveChangesAsync();
             await SayaciGuncelleAsync(context, "Dersler");
+        }
+
+        private static async Task KutuphaneMasalariniEkleAsync(ApplicationDbContext context)
+        {
+            for (var i = 1; i <= 16; i++)
+            {
+                context.KutuphaneMasalari.Add(new KutuphaneMasasi
+                {
+                    MasaNo = $"1-{i:00}",
+                    Kat = 1,
+                    Kapasite = 1,
+                    PrizVarMi = i % 2 == 0
+                });
+            }
+
+            for (var i = 1; i <= 12; i++)
+            {
+                context.KutuphaneMasalari.Add(new KutuphaneMasasi
+                {
+                    MasaNo = $"2-{i:00}",
+                    Kat = 2,
+                    Kapasite = 1,
+                    PrizVarMi = i <= 6
+                });
+            }
+
+            for (var i = 1; i <= 4; i++)
+            {
+                context.KutuphaneMasalari.Add(new KutuphaneMasasi
+                {
+                    MasaNo = $"2-G{i}",
+                    Kat = 2,
+                    Kapasite = 4,
+                    PrizVarMi = true
+                });
+            }
+
+            await context.SaveChangesAsync();
         }
 
         private static int? SayiVeyaBos(JsonElement deger) =>
