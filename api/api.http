@@ -131,3 +131,35 @@ Content-Type: application/json
 ### Seçtiğim derslerin yaklaşan sınavları
 GET {{api_HostAddress}}/api/derslerim/sinavlar
 Authorization: Bearer {{giris.response.body.token}}
+
+### Kütüphane anlık doluluk
+GET {{api_HostAddress}}/api/kutuphane/doluluk
+Authorization: Bearer {{giris.response.body.token}}
+
+### Seçilen saat aralığında masaların durumu
+GET {{api_HostAddress}}/api/kutuphane/masalar?tarih=2026-11-16&baslangic=10:00&sure=90
+Authorization: Bearer {{giris.response.body.token}}
+
+### Masa ayır
+POST {{api_HostAddress}}/api/kutuphane/rezervasyonlar
+Authorization: Bearer {{giris.response.body.token}}
+Content-Type: application/json
+
+{
+  "masaId": 1,
+  "tarih": "2026-11-16",
+  "baslangic": "10:00",
+  "sureDakika": 90
+}
+
+### Rezervasyonlarım
+GET {{api_HostAddress}}/api/kutuphane/rezervasyonlarim
+Authorization: Bearer {{giris.response.body.token}}
+
+### Rezervasyon iptal (başlamamış olmalı)
+DELETE {{api_HostAddress}}/api/kutuphane/rezervasyonlar/1
+Authorization: Bearer {{giris.response.body.token}}
+
+### Masayı erken boşalt (devam eden rezervasyon)
+POST {{api_HostAddress}}/api/kutuphane/rezervasyonlar/1/bosalt
+Authorization: Bearer {{giris.response.body.token}}

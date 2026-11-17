@@ -57,23 +57,25 @@ Uygulama, backend API'sine bağlanmak için `lib/core/constants/api_constants.da
 lib/
 ├── core/
 │   ├── constants/api_constants.dart  → API adresi ve uç noktalar
+│   ├── kutuphane_kurallari.dart      → Kütüphane rezervasyon kuralları (API ile aynı)
 │   ├── dogrulayicilar.dart           → Form doğrulama kuralları (API'deki Data Annotations karşılığı)
 │   ├── moduller.dart                 → Kampüs modüllerinin başlık, ikon, rota ve açıklamaları
 │   ├── roller.dart                   → Rol adları (Yonetici, Kullanici)
 │   ├── tema.dart                     → Renkler ve Türkçe tarih biçimi
 │   └── turkiye_saati.dart            → Türkiye saati (UTC+3) ve saat biçimleri
-├── models/                           → kullanici.dart, duyuru.dart, kayip_esya.dart, mekan.dart, ders_programi.dart
+├── models/                           → kullanici.dart, duyuru.dart, kayip_esya.dart, mekan.dart, ders_programi.dart, kutuphane.dart
 ├── services/
 │   ├── api_istemcisi.dart            → HTTP istekleri, JWT başlığı, hata çözümleme
 │   ├── oturum_servisi.dart           → Giriş/kayıt/çıkış, token saklama
 │   ├── duyuru_servisi.dart           → Duyuruları API'den çeker
 │   ├── kayip_esya_servisi.dart       → Kayıp eşya ilanları
-│   └── kampus_servisi.dart           → Binalar, ders programı, seçilen dersler ve sınavlar
+│   ├── kampus_servisi.dart           → Binalar, ders programı, seçilen dersler ve sınavlar
+│   └── kutuphane_servisi.dart        → Doluluk, masalar ve rezervasyonlar
 ├── screens/
 │   ├── giris_ekrani.dart
 │   ├── kayit_ekrani.dart
 │   ├── ana_sayfa.dart                → Karşılama, modül kartları ve duyurular
-│   ├── kampus/                       → Modül ekranları (harita, derslik bulucu, kayıp eşya, diğerleri iskelet)
+│   ├── kampus/                       → Modül ekranları (harita, derslik bulucu, kütüphane, kayıp eşya, diğerleri iskelet)
 │   ├── erisim_engellendi_ekrani.dart
 │   └── yonetim/kullanicilar_ekrani.dart  → Yalnızca Yönetici
 ├── widgets/                          → form_ogeleri, panel_ogeleri, yan_menu, modul_iskeleti

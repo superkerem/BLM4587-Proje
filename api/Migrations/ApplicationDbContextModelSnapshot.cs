@@ -500,9 +500,6 @@ namespace api.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("DoluMu")
-                        .HasColumnType("boolean");
-
                     b.Property<int>("Kapasite")
                         .HasColumnType("integer");
 
@@ -517,20 +514,50 @@ namespace api.Migrations
                     b.Property<bool>("PrizVarMi")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("RezervasyonBitis")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int?>("RezerveEdenKullaniciId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MasaNo")
                         .IsUnique();
 
-                    b.HasIndex("RezerveEdenKullaniciId");
-
                     b.ToTable("KutuphaneMasalari");
+                });
+
+            modelBuilder.Entity("api.Models.KutuphaneRezervasyonu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Baslangic")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("Bitis")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("BosaltildiMi")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IptalEdildiMi")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("KullaniciId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MasaId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("OlusturmaTarihi")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KullaniciId", "Baslangic");
+
+                    b.HasIndex("MasaId", "Baslangic");
+
+                    b.ToTable("KutuphaneRezervasyonlari");
                 });
 
             modelBuilder.Entity("api.Models.Mekan", b =>
@@ -712,14 +739,23 @@ namespace api.Migrations
                     b.Navigation("Kullanici");
                 });
 
-            modelBuilder.Entity("api.Models.KutuphaneMasasi", b =>
+            modelBuilder.Entity("api.Models.KutuphaneRezervasyonu", b =>
                 {
-                    b.HasOne("api.Models.Kullanici", "RezerveEdenKullanici")
-                        .WithMany("RezerveMasalar")
-                        .HasForeignKey("RezerveEdenKullaniciId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                    b.HasOne("api.Models.Kullanici", "Kullanici")
+                        .WithMany("KutuphaneRezervasyonlari")
+                        .HasForeignKey("KullaniciId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("RezerveEdenKullanici");
+                    b.HasOne("api.Models.KutuphaneMasasi", "Masa")
+                        .WithMany("Rezervasyonlar")
+                        .HasForeignKey("MasaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Kullanici");
+
+                    b.Navigation("Masa");
                 });
 
             modelBuilder.Entity("api.Models.Sinav", b =>
@@ -750,7 +786,12 @@ namespace api.Migrations
 
                     b.Navigation("Duyurular");
 
-                    b.Navigation("RezerveMasalar");
+                    b.Navigation("KutuphaneRezervasyonlari");
+                });
+
+            modelBuilder.Entity("api.Models.KutuphaneMasasi", b =>
+                {
+                    b.Navigation("Rezervasyonlar");
                 });
 
             modelBuilder.Entity("api.Models.Mekan", b =>

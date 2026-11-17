@@ -15,6 +15,7 @@ namespace api.Data
         public DbSet<Derslik> Derslikler { get; set; }
         public DbSet<Ders> Dersler { get; set; }
         public DbSet<KutuphaneMasasi> KutuphaneMasalari { get; set; }
+        public DbSet<KutuphaneRezervasyonu> KutuphaneRezervasyonlari { get; set; }
         public DbSet<Etkinlik> Etkinlikler { get; set; }
         public DbSet<KayipEsya> KayipEsyalar { get; set; }
         public DbSet<Duyuru> Duyurular { get; set; }
@@ -93,11 +94,23 @@ namespace api.Data
                 .HasForeignKey(s => s.DerslikId)
                 .OnDelete(DeleteBehavior.SetNull);
 
-            modelBuilder.Entity<KutuphaneMasasi>()
-                .HasOne(m => m.RezerveEdenKullanici)
-                .WithMany(k => k.RezerveMasalar)
-                .HasForeignKey(m => m.RezerveEdenKullaniciId)
-                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<KutuphaneRezervasyonu>()
+                .HasOne(r => r.Masa)
+                .WithMany(m => m.Rezervasyonlar)
+                .HasForeignKey(r => r.MasaId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<KutuphaneRezervasyonu>()
+                .HasOne(r => r.Kullanici)
+                .WithMany(k => k.KutuphaneRezervasyonlari)
+                .HasForeignKey(r => r.KullaniciId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<KutuphaneRezervasyonu>()
+                .HasIndex(r => new { r.MasaId, r.Baslangic });
+
+            modelBuilder.Entity<KutuphaneRezervasyonu>()
+                .HasIndex(r => new { r.KullaniciId, r.Baslangic });
 
             modelBuilder.Entity<KayipEsya>()
                 .HasOne(e => e.BildirenKullanici)
