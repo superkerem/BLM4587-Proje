@@ -62,6 +62,9 @@ dotnet ef database update
 >
 > 3. haftada kampüs binaları, derslikler ve ders programı eklendi (`KampusHaritasi` migration'ı). Bu tablolar boşsa
 > API ilk açılışta `api/Data/Tohum/` klasöründeki JSON dosyalarından otomatik olarak doldurulur.
+>
+> 4. haftada kütüphane rezervasyon tablosu eklendi (`KutuphaneRezervasyonu` migration'ı). Kütüphane masaları tablo boşsa
+> API açılışında örnek veriyle (2 kat, 32 masa) oluşturulur.
 
 ### 4. API'yi Başlat
 
@@ -106,6 +109,23 @@ Giriş yapmadan korumalı uç noktaya gelen istek `401`, rolü yetmeyen istek `4
 | `PUT /api/derslerim` | Giriş yapmış | Seçilen dersleri kaydeder (`{ "kodlar": [...] }`) |
 | `GET /api/derslerim/sinavlar` | Giriş yapmış | Seçilen derslerin bugünden sonraki sınavları |
 
+### Kütüphane Masa Rezervasyonu (4. Hafta)
+
+| Uç nokta | Yetki | Açıklama |
+|---|---|---|
+| `GET /api/kutuphane/doluluk` | Giriş yapmış | Anlık doluluk oranı, katlara göre dolu masa sayısı |
+| `GET /api/kutuphane/masalar?tarih=&baslangic=&sure=` | Giriş yapmış | Seçilen saat aralığında masaların müsaitlik durumu |
+| `GET /api/kutuphane/rezervasyonlarim` | Giriş yapmış | Kullanıcının bugünkü ve ileri tarihli rezervasyonları |
+| `POST /api/kutuphane/rezervasyonlar` | Giriş yapmış | Masa ayırır (`masaId`, `tarih`, `baslangic`, `sureDakika`) |
+| `DELETE /api/kutuphane/rezervasyonlar/{id}` | Rezervasyon sahibi | Başlamamış rezervasyonu iptal eder |
+| `POST /api/kutuphane/rezervasyonlar/{id}/bosalt` | Rezervasyon sahibi | Devam eden rezervasyonun masasını erken boşaltır |
+
+Kurallar (`api/Services/KutuphaneKurallari.cs`): kütüphane 08:00–22:00 açık, saatler 30 dakikalık adımlarla seçilir,
+bir rezervasyon 30 dakika ile 3 saat arasıdır, bir kişinin bir gündeki rezervasyonlarının toplamı en fazla 5 saattir,
+en fazla 7 gün sonrası için rezervasyon yapılabilir. Aynı masaya çakışan saatte ve aynı kişiye aynı anda iki rezervasyon
+yapılamaz; kontrol ve kayıt tek bir Serializable transaction içinde yapılır. Zamanlar veritabanında UTC saklanır,
+kurallar Türkiye saatine göre uygulanır.
+
 ---
 
 ## Mobil Uygulama Kurulumu
@@ -145,13 +165,14 @@ API adresi `mobile/lib/core/constants/api_constants.dart` dosyasındaki `ApiSabi
 
 | Tablo | İlişkiler |
 |---|---|
-| `Kullanicilar` (Identity) | KutuphaneMasalari (rezerve eden), KayipEsyalar (bildiren), Duyurular (yazar), KullaniciDersleri |
+| `Kullanicilar` (Identity) | KutuphaneRezervasyonlari, KayipEsyalar (bildiren), Duyurular (yazar), KullaniciDersleri |
 | `Roller` (Identity) | KullaniciRolleri |
 | `KullaniciRolleri` (Identity) | Kullanicilar, Roller (çoka-çok ara tablo) |
 | `Akademisyenler` | Dersler |
 | `Derslikler` | Mekanlar, Dersler |
 | `Dersler` | Derslikler, Akademisyenler |
-| `KutuphaneMasalari` | Kullanicilar |
+| `KutuphaneMasalari` | KutuphaneRezervasyonlari |
+| `KutuphaneRezervasyonlari` | KutuphaneMasalari, Kullanicilar |
 | `Etkinlikler` | - |
 | `KayipEsyalar` | Kullanicilar |
 | `Duyurular` | Kullanicilar (yazar; yazar silinirse boşa çıkar) |
