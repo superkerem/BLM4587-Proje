@@ -94,4 +94,26 @@ class Dogrulayicilar {
         ? null
         : 'Bitiş saati başlangıç saatinden sonra olmalıdır.';
   }
+
+  static final RegExp _dersKodu = RegExp(r'^[A-ZÇĞİÖŞÜ]{2,4}[0-9]{3,4}$');
+
+  static String? sinavDersi(String? kod) {
+    if (kod == null || kod.isEmpty) return 'Ders seçiniz.';
+    return _dersKodu.hasMatch(kod) ? null : "Ders kodu 'BLM4581' biçiminde olmalıdır.";
+  }
+
+  static String? sinavTuru(Object? tur) => tur == null ? 'Sınav türü seçiniz.' : null;
+
+  static String? sinavTarihi(DateTime? tarih) => tarih == null ? 'Tarih zorunludur.' : null;
+
+  static String? sinavBaslangici(int? dakika) => dakika == null ? 'Başlangıç saati zorunludur.' : null;
+
+  static String? sinavBitisi(int? baslangic, int? bitis) {
+    if (bitis == null) return 'Bitiş saati zorunludur.';
+    if (baslangic == null) return null;
+    return bitisSaati(baslangic, bitis);
+  }
+
+  static String? sinavDerslikleri(Set<int>? derslikler) =>
+      derslikler == null || derslikler.isEmpty ? 'En az bir derslik seçiniz.' : null;
 }

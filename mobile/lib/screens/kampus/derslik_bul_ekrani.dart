@@ -6,9 +6,13 @@ import '../../core/moduller.dart';
 import '../../core/tema.dart';
 import '../../core/turkiye_saati.dart';
 import '../../models/ders_programi.dart';
+import '../../models/sinav.dart';
 import '../../services/api_istemcisi.dart';
 import '../../services/kampus_servisi.dart';
+import '../../services/oturum_servisi.dart';
+import '../../services/sinav_servisi.dart';
 import '../../widgets/panel_ogeleri.dart';
+import '../../widgets/sinav_satiri.dart';
 import 'ders_secim_sayfasi.dart';
 
 void _haritadaGoster(BuildContext context, int mekanId) {
@@ -55,7 +59,7 @@ class _DerslikBulEkraniState extends State<DerslikBulEkrani> {
     try {
       final program = await KampusServisi.dersProgrami();
       final derslerim = await KampusServisi.derslerim();
-      final sinavlar = await KampusServisi.sinavlarim();
+      final sinavlar = await SinavServisi.dersSinavlari(derslerim);
       if (!mounted) return;
       setState(() {
         _program = program;
@@ -78,7 +82,7 @@ class _DerslikBulEkraniState extends State<DerslikBulEkrani> {
     setState(() => _kaydediliyor = true);
     try {
       final kaydedilen = await KampusServisi.derslerimiKaydet(kodlar);
-      final sinavlar = await KampusServisi.sinavlarim();
+      final sinavlar = await SinavServisi.dersSinavlari(kaydedilen);
       if (!mounted) return;
       setState(() {
         _derslerim = kaydedilen;
@@ -88,6 +92,17 @@ class _DerslikBulEkraniState extends State<DerslikBulEkrani> {
       mesajci.showSnackBar(SnackBar(content: Text(hata.mesaj)));
     } finally {
       if (mounted) setState(() => _kaydediliyor = false);
+    }
+  }
+
+  Future<void> _sinavEkle() async {
+    final kaydedildi = await Navigator.pushNamed(context, '/yonetim/sinav-form');
+    if (kaydedildi != true || !mounted) return;
+    try {
+      final sinavlar = await SinavServisi.dersSinavlari(_derslerim);
+      if (mounted) setState(() => _sinavlar = sinavlar);
+    } on ApiHatasi catch (_) {
+      return;
     }
   }
 
@@ -149,6 +164,7 @@ class _DerslikBulEkraniState extends State<DerslikBulEkrani> {
             kaydediliyor: _kaydediliyor,
             onDersSec: _dersSec,
             onDersKaldir: (kod) => _kaydet(_derslerim.difference({kod})),
+            onSinavEkle: OturumServisi.ornek.yoneticiMi ? _sinavEkle : null,
           ),
         ),
         RefreshIndicator(
@@ -169,6 +185,7 @@ class _ProgramimSekmesi extends StatefulWidget {
     required this.kaydediliyor,
     required this.onDersSec,
     required this.onDersKaldir,
+    this.onSinavEkle,
   });
 
   final DersProgrami program;
@@ -178,6 +195,7 @@ class _ProgramimSekmesi extends StatefulWidget {
   final bool kaydediliyor;
   final VoidCallback onDersSec;
   final ValueChanged<String> onDersKaldir;
+  final VoidCallback? onSinavEkle;
 
   @override
   State<_ProgramimSekmesi> createState() => _ProgramimSekmesiState();
@@ -247,8 +265,8 @@ class _ProgramimSekmesiState extends State<_ProgramimSekmesi> {
               else
                 _gunlukListe(oturumlar),
               const SizedBox(height: 24),
-              const BolumBasligi('Yaklaşan Sınavlar'),
-              _SinavListesi(sinavlar: widget.sinavlar, program: widget.program),
+              _SinavBasligi(onSinavEkle: widget.onSinavEkle),
+              _SinavListesi(sinavlar: widget.sinavlar),
             ],
           ],
         );
@@ -802,11 +820,41 @@ class _CizelgeBlogu extends StatelessWidget {
   }
 }
 
+class _SinavBasligi extends StatelessWidget {
+  const _SinavBasligi({this.onSinavEkle});
+
+  final VoidCallback? onSinavEkle;
+
+  @override
+  Widget build(BuildContext context) {
+    final ekle = onSinavEkle;
+    if (ekle == null) return const BolumBasligi('Sınavlar');
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        children: [
+          const Expanded(
+            child: Text(
+              'Sınavlar',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Renkler.yazi),
+            ),
+          ),
+          TextButton.icon(
+            onPressed: ekle,
+            icon: const Icon(Icons.add, size: 18),
+            label: const Text('Sınav ekle'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _SinavListesi extends StatelessWidget {
-  const _SinavListesi({required this.sinavlar, required this.program});
+  const _SinavListesi({required this.sinavlar});
 
   final List<Sinav> sinavlar;
-  final DersProgrami program;
 
   @override
   Widget build(BuildContext context) {
@@ -816,7 +864,7 @@ class _SinavListesi extends StatelessWidget {
           children: [
             Icon(Icons.event_busy_outlined, color: Renkler.yaziSoluk),
             SizedBox(width: 10),
-            Expanded(child: Text('Sınav takvimi henüz eklenmedi.', style: TextStyle(color: Renkler.yaziSoluk))),
+            Expanded(child: Text('Seçtiğin dersler için sınav yok', style: TextStyle(color: Renkler.yaziSoluk))),
           ],
         ),
       );
@@ -828,62 +876,8 @@ class _SinavListesi extends StatelessWidget {
         children: [
           for (var i = 0; i < sinavlar.length; i++) ...[
             if (i > 0) const Divider(),
-            _SinavSatiri(sinav: sinavlar[i], program: program),
+            SinavSatiri(sinav: sinavlar[i]),
           ],
-        ],
-      ),
-    );
-  }
-}
-
-class _SinavSatiri extends StatelessWidget {
-  const _SinavSatiri({required this.sinav, required this.program});
-
-  final Sinav sinav;
-  final DersProgrami program;
-
-  @override
-  Widget build(BuildContext context) {
-    final yer = sinav.derslikAdi == null
-        ? 'Derslik belirtilmemiş'
-        : (sinav.mekanAdi == null ? sinav.derslikAdi! : '${sinav.derslikAdi} · ${sinav.mekanAdi}');
-    final mekanId = sinav.mekanId;
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Wrap(
-                  spacing: 6,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Rozet(metin: sinav.tur.etiket, arkaPlan: Renkler.vurgu, yaziRengi: Colors.white),
-                    Text(
-                      program.etiket(sinav.dersKodu),
-                      style: const TextStyle(fontWeight: FontWeight.w600, color: Renkler.yazi),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '${TurkceTarih.uzun(sinav.tarih)} · '
-                  '${TurkiyeSaati.saatMetni(sinav.baslangic)}–${TurkiyeSaati.saatMetni(sinav.bitis)}',
-                  style: const TextStyle(color: Renkler.yazi),
-                ),
-                Text(yer, style: const TextStyle(fontSize: 13, color: Renkler.yaziSoluk)),
-              ],
-            ),
-          ),
-          if (mekanId != null)
-            IconButton(
-              tooltip: 'Haritada göster',
-              icon: const Icon(Icons.map_outlined, color: Renkler.vurgu),
-              onPressed: () => _haritadaGoster(context, mekanId),
-            ),
         ],
       ),
     );

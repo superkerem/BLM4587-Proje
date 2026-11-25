@@ -102,6 +102,13 @@ class YanMenu extends StatelessWidget {
                       aktif: aktifRota.startsWith('/yonetim/duyuru'),
                       onTap: () => _git(context, '/yonetim/duyurular'),
                     ),
+                  if (oturum.yoneticiMi)
+                    _MenuBaglantisi(
+                      ikon: Icons.event_note_outlined,
+                      baslik: 'Sınav Takvimi',
+                      aktif: aktifRota.startsWith('/yonetim/sinav'),
+                      onTap: () => _git(context, '/yonetim/sinavlar'),
+                    ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(8, 8, 0, 4),
                     child: Row(

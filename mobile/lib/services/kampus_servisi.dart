@@ -43,9 +43,4 @@ class KampusServisi {
         as List<dynamic>;
     return liste.cast<String>().toSet();
   }
-
-  static Future<List<Sinav>> sinavlarim() async {
-    final liste = await OturumServisi.ornek.api.get(ApiSabitleri.sinavlarim) as List<dynamic>;
-    return liste.map((e) => Sinav.fromJson(e as Map<String, dynamic>)).toList();
-  }
 }

@@ -20,6 +20,8 @@ import 'screens/kayit_ekrani.dart';
 import 'screens/yonetim/duyuru_form_ekrani.dart';
 import 'screens/yonetim/duyurular_ekrani.dart';
 import 'screens/yonetim/kullanicilar_ekrani.dart';
+import 'screens/yonetim/sinav_form_ekrani.dart';
+import 'screens/yonetim/sinavlar_ekrani.dart';
 import 'services/oturum_servisi.dart';
 
 Future<void> main() async {
@@ -75,6 +77,10 @@ class _KampusPortaliAppState extends State<KampusPortaliApp> {
           '/yonetim/duyurular' => const DuyurularEkrani(),
           '/yonetim/duyuru-form' => DuyuruFormEkrani(
               duyuru: ayarlar.arguments is Duyuru ? ayarlar.arguments as Duyuru : null,
+            ),
+          '/yonetim/sinavlar' => const SinavlarEkrani(),
+          '/yonetim/sinav-form' => SinavFormEkrani(
+              sinavId: ayarlar.arguments is int ? ayarlar.arguments as int : null,
             ),
           _ => const ErisimEngellendiEkrani(),
         };

@@ -54,7 +54,13 @@ class _KullanicilarEkraniState extends State<KullanicilarEkrani> {
               physics: const AlwaysScrollableScrollPhysics(),
               padding: const EdgeInsets.all(16),
               children: [
-                const SayfaBasligi(baslik: 'Yönetim Paneli', aciklama: 'Kayıtlı kullanıcılar ve rolleri'),
+                const SayfaBasligi(
+                  baslik: 'Yönetim Paneli',
+                  aciklama: 'Portal içeriği, kayıtlı kullanıcılar ve rolleri',
+                ),
+                const _YonetimModulleri(),
+                const SizedBox(height: 24),
+                const BolumBasligi('Kullanıcılar'),
                 _icerik(durum),
               ],
             ),
@@ -150,6 +156,102 @@ class _KullaniciSatiri extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _YonetimModulleri extends StatelessWidget {
+  const _YonetimModulleri();
+
+  @override
+  Widget build(BuildContext context) {
+    const kartlar = [
+      _ModulKarti(
+        ikon: Icons.campaign_outlined,
+        baslik: 'Duyuru Yönetimi',
+        aciklama: 'Ana sayfadaki duyuruları ekleyin, düzenleyin veya silin.',
+        rota: '/yonetim/duyurular',
+      ),
+      _ModulKarti(
+        ikon: Icons.event_note_outlined,
+        baslik: 'Sınav Takvimi',
+        aciklama: 'Sınavların tarihini, saatini ve dersliklerini girin.',
+        rota: '/yonetim/sinavlar',
+      ),
+    ];
+
+    return LayoutBuilder(
+      builder: (context, kisitlar) {
+        if (kisitlar.maxWidth < 520) {
+          return Column(
+            children: [
+              for (var i = 0; i < kartlar.length; i++) ...[
+                if (i > 0) const SizedBox(height: 12),
+                kartlar[i],
+              ],
+            ],
+          );
+        }
+
+        return IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              for (var i = 0; i < kartlar.length; i++) ...[
+                if (i > 0) const SizedBox(width: 12),
+                Expanded(child: kartlar[i]),
+              ],
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _ModulKarti extends StatelessWidget {
+  const _ModulKarti({required this.ikon, required this.baslik, required this.aciklama, required this.rota});
+
+  final IconData ikon;
+  final String baslik;
+  final String aciklama;
+  final String rota;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: () => Navigator.pushNamed(context, rota),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Renkler.vurguAcik,
+                  borderRadius: BorderRadius.circular(Tema.kose),
+                ),
+                child: Icon(ikon, color: Renkler.vurgu),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(baslik, style: const TextStyle(fontWeight: FontWeight.w600, color: Renkler.yazi)),
+                    const SizedBox(height: 2),
+                    Text(aciklama, style: const TextStyle(fontSize: 13, color: Renkler.yaziSoluk)),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right, color: Renkler.yaziSoluk),
+            ],
+          ),
+        ),
       ),
     );
   }
