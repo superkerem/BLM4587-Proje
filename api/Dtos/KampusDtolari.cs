@@ -36,16 +36,4 @@ namespace api.Dtos
         [Display(Name = "Ders Kodları")]
         public List<string> Kodlar { get; set; } = new();
     }
-
-    public record SinavBilgisi(
-        int Id,
-        string DersKodu,
-        string Tur,
-        string Tarih,
-        string Baslangic,
-        string Bitis,
-        int? DerslikId,
-        string? DerslikAdi,
-        int? MekanId,
-        string? MekanAdi);
 }

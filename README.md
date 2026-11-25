@@ -107,7 +107,6 @@ Giriş yapmadan korumalı uç noktaya gelen istek `401`, rolü yetmeyen istek `4
 | `GET /api/ders-programi` | Giriş yapmış | Tüm derslikler ve ders oturumları |
 | `GET /api/derslerim` | Giriş yapmış | Kullanıcının seçtiği ders kodları |
 | `PUT /api/derslerim` | Giriş yapmış | Seçilen dersleri kaydeder (`{ "kodlar": [...] }`) |
-| `GET /api/derslerim/sinavlar` | Giriş yapmış | Seçilen derslerin bugünden sonraki sınavları |
 
 ### Kütüphane Masa Rezervasyonu (4. Hafta)
 
@@ -125,6 +124,22 @@ bir rezervasyon 30 dakika ile 3 saat arasıdır, bir kişinin bir gündeki rezer
 en fazla 7 gün sonrası için rezervasyon yapılabilir. Aynı masaya çakışan saatte ve aynı kişiye aynı anda iki rezervasyon
 yapılamaz; kontrol ve kayıt tek bir Serializable transaction içinde yapılır. Zamanlar veritabanında UTC saklanır,
 kurallar Türkiye saatine göre uygulanır.
+
+### Sınav Yerleri ve Sınav Takvimi (5. Hafta)
+
+| Uç nokta | Yetki | Açıklama |
+|---|---|---|
+| `GET /api/sinavlar?dersKodlari=BLM2039,BLM4581` | Giriş yapmış | Seçilen derslerin sınavları; aynı sınavın derslikleri tek kayıtta, önce yaklaşanlar sonra geçmişler |
+| `GET /api/yonetim/sinavlar` | Yalnızca `Yonetici` | Tüm sınavlar, yaklaşan ve geçmiş olarak ayrı |
+| `GET /api/yonetim/sinavlar/{id}` | Yalnızca `Yonetici` | Tek sınav ve seçili derslikleri |
+| `POST /api/yonetim/sinavlar` | Yalnızca `Yonetici` | Sınav ekler; her derslik için bir kayıt açılır |
+| `PUT /api/yonetim/sinavlar/{id}` | Yalnızca `Yonetici` | Sınavın eski kayıtlarını silip yenilerini oluşturur |
+| `DELETE /api/yonetim/sinavlar/{id}` | Yalnızca `Yonetici` | Sınavı tüm derslik kayıtlarıyla siler |
+
+Aynı ders kodu, tür, tarih, başlangıç ve bitiş saatine sahip kayıtlar tek sınav sayılır. Ders kodunun ders programında,
+dersliklerin veritabanında bulunması ve bitiş saatinin başlangıçtan sonra olması kontrol edilir. Derslikler ve dersler
+her açılışta `Data/Tohum/ders_programi.json` dosyasıyla eşitlenir; 16–21 Kasım vize programı
+(`Data/Tohum/sinav_programi.json`) sınav tablosu boşsa bir kez eklenir.
 
 ---
 

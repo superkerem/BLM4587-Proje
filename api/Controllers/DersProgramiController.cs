@@ -13,8 +13,6 @@ namespace api.Controllers
     [Authorize]
     public class DersProgramiController : ControllerBase
     {
-        private static readonly TimeZoneInfo TurkiyeSaatDilimi = TimeZoneInfo.FindSystemTimeZoneById("Europe/Istanbul");
-
         private readonly ApplicationDbContext _context;
 
         public DersProgramiController(ApplicationDbContext context)
@@ -109,41 +107,6 @@ namespace api.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(await KodlariGetirAsync(kullaniciId));
-        }
-
-        [HttpGet("derslerim/sinavlar")]
-        [ProducesResponseType<List<SinavBilgisi>>(StatusCodes.Status200OK)]
-        [ProducesResponseType<HataYaniti>(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> Sinavlarim()
-        {
-            if (KullaniciId() is not int kullaniciId)
-            {
-                return Unauthorized(new HataYaniti("Bu işlem için giriş yapmalısınız."));
-            }
-
-            var kodlar = await KodlariGetirAsync(kullaniciId);
-            var bugun = DateOnly.FromDateTime(TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TurkiyeSaatDilimi));
-
-            var sinavlar = await _context.Sinavlar
-                .AsNoTracking()
-                .Include(s => s.Derslik)
-                .ThenInclude(d => d!.Mekan)
-                .Where(s => kodlar.Contains(s.DersKodu) && s.Tarih >= bugun)
-                .OrderBy(s => s.Tarih)
-                .ThenBy(s => s.BaslangicSaati)
-                .ToListAsync();
-
-            return Ok(sinavlar.Select(s => new SinavBilgisi(
-                s.Id,
-                s.DersKodu,
-                s.Tur.ToString(),
-                s.Tarih.ToString("yyyy-MM-dd"),
-                s.BaslangicSaati.ToString("HH:mm"),
-                s.BitisSaati.ToString("HH:mm"),
-                s.DerslikId,
-                s.Derslik?.Ad,
-                s.Derslik?.MekanId,
-                s.Derslik?.Mekan?.Ad)));
         }
 
         private int? KullaniciId() =>

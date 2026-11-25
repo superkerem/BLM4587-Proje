@@ -128,8 +128,44 @@ Content-Type: application/json
   "kodlar": ["BLM4581", "BLM4587"]
 }
 
-### Seçtiğim derslerin yaklaşan sınavları
-GET {{api_HostAddress}}/api/derslerim/sinavlar
+### Seçilen derslerin sınavları
+GET {{api_HostAddress}}/api/sinavlar?dersKodlari=BLM2039,BLM4581
+Authorization: Bearer {{giris.response.body.token}}
+
+### Sınav takvimi (yalnızca Yonetici)
+GET {{api_HostAddress}}/api/yonetim/sinavlar
+Authorization: Bearer {{giris.response.body.token}}
+
+### Sınav ekle (yalnızca Yonetici)
+POST {{api_HostAddress}}/api/yonetim/sinavlar
+Authorization: Bearer {{giris.response.body.token}}
+Content-Type: application/json
+
+{
+  "dersKodu": "BLM4581",
+  "tur": "Final",
+  "tarih": "2027-01-11",
+  "baslangic": "10:00",
+  "bitis": "12:00",
+  "derslikIdleri": [1, 2]
+}
+
+### Sınavı güncelle (yalnızca Yonetici)
+PUT {{api_HostAddress}}/api/yonetim/sinavlar/1001
+Authorization: Bearer {{giris.response.body.token}}
+Content-Type: application/json
+
+{
+  "dersKodu": "BLM4559",
+  "tur": "Vize",
+  "tarih": "2026-11-16",
+  "baslangic": "13:00",
+  "bitis": "15:00",
+  "derslikIdleri": [4, 5]
+}
+
+### Sınavı sil (yalnızca Yonetici)
+DELETE {{api_HostAddress}}/api/yonetim/sinavlar/1001
 Authorization: Bearer {{giris.response.body.token}}
 
 ### Kütüphane anlık doluluk
