@@ -71,6 +71,48 @@
    "ad": "D Blok Servis Lab",
    "mekanId": null,
    "not": "Tandoğan Yerleşkesi"
+  },
+  {
+   "id": 13,
+   "ad": "G1 Dersliği",
+   "mekanId": 5,
+   "not": "Yapay Zeka Mühendisliği binası"
+  },
+  {
+   "id": 14,
+   "ad": "G2 Dersliği",
+   "mekanId": 5,
+   "not": "Yapay Zeka Mühendisliği binası"
+  },
+  {
+   "id": 15,
+   "ad": "G3 Dersliği",
+   "mekanId": 5,
+   "not": "Yapay Zeka Mühendisliği binası"
+  },
+  {
+   "id": 16,
+   "ad": "G4 Dersliği",
+   "mekanId": 5,
+   "not": "Yapay Zeka Mühendisliği binası"
+  },
+  {
+   "id": 17,
+   "ad": "F1 Dersliği",
+   "mekanId": 5,
+   "not": "Yapay Zeka Mühendisliği binası (eski J1)"
+  },
+  {
+   "id": 18,
+   "ad": "F2 Dersliği",
+   "mekanId": 5,
+   "not": "Yapay Zeka Mühendisliği binası (eski J2)"
+  },
+  {
+   "id": 19,
+   "ad": "BME1 Dersliği",
+   "mekanId": 6,
+   "not": "Biyomedikal Mühendisliği Bölümü dersliği"
   }
  ],
  "dersler": [
@@ -132,7 +174,7 @@
   {
    "id": 6,
    "kod": "COM1015",
-   "dersAdi": "COM1015",
+   "dersAdi": "INTRODUCTION TO COMPUTER SCIENCE",
    "labMi": false,
    "grup": "İngilizce 1. Sınıf",
    "gun": 4,
@@ -176,7 +218,7 @@
   {
    "id": 10,
    "kod": "COM2077",
-   "dersAdi": "COM2077",
+   "dersAdi": "DIGITAL LOGIC DESIGN",
    "labMi": false,
    "grup": "İngilizce 2. Sınıf",
    "gun": 1,
@@ -187,7 +229,7 @@
   {
    "id": 11,
    "kod": "COM2039",
-   "dersAdi": "COM2039",
+   "dersAdi": "DISCRETE STRUCTURES",
    "labMi": false,
    "grup": "İngilizce 2. Sınıf",
    "gun": 2,
@@ -198,7 +240,7 @@
   {
    "id": 12,
    "kod": "COM2067",
-   "dersAdi": "COM2067",
+   "dersAdi": "DATA STRUCTURES",
    "labMi": false,
    "grup": "İngilizce 2. Sınıf",
    "gun": 2,
@@ -209,7 +251,7 @@
   {
    "id": 13,
    "kod": "COM2067",
-   "dersAdi": "COM2067 Laboratuvarı",
+   "dersAdi": "DATA STRUCTURES",
    "labMi": true,
    "grup": "İngilizce 2. Sınıf",
    "gun": 2,
@@ -220,7 +262,7 @@
   {
    "id": 14,
    "kod": "COM2077",
-   "dersAdi": "COM2077 Laboratuvarı",
+   "dersAdi": "DIGITAL LOGIC DESIGN",
    "labMi": true,
    "grup": "İngilizce 2. Sınıf",
    "gun": 3,
@@ -231,7 +273,7 @@
   {
    "id": 15,
    "kod": "COM2501",
-   "dersAdi": "COM2501",
+   "dersAdi": "SCIENTIFIC PROGRAMMING",
    "labMi": false,
    "grup": "İngilizce 2. Sınıf",
    "gun": 3,
@@ -242,7 +284,7 @@
   {
    "id": 16,
    "kod": "COM2043",
-   "dersAdi": "COM2043",
+   "dersAdi": "PROGRAMMING LANGUAGE CONCEPTS",
    "labMi": false,
    "grup": "İngilizce 2. Sınıf",
    "gun": 4,
@@ -253,7 +295,7 @@
   {
    "id": 17,
    "kod": "COM2043",
-   "dersAdi": "COM2043 Laboratuvarı",
+   "dersAdi": "PROGRAMMING LANGUAGE CONCEPTS",
    "labMi": true,
    "grup": "İngilizce 2. Sınıf",
    "gun": 5,
@@ -275,7 +317,7 @@
   {
    "id": 19,
    "kod": "COM3533",
-   "dersAdi": "COM3533",
+   "dersAdi": "NUMERICAL ANALYSIS METHODS",
    "labMi": false,
    "grup": "İngilizce 3. Sınıf",
    "gun": 1,
@@ -286,7 +328,7 @@
   {
    "id": 20,
    "kod": "COM3023",
-   "dersAdi": "COM3023",
+   "dersAdi": "MICROPROCESSORS AND EMBEDDED SYSTEMS",
    "labMi": false,
    "grup": "İngilizce 3. Sınıf",
    "gun": 3,
@@ -297,7 +339,7 @@
   {
    "id": 21,
    "kod": "COM3033",
-   "dersAdi": "COM3033",
+   "dersAdi": "OPERATING SYSTEMS",
    "labMi": false,
    "grup": "İngilizce 3. Sınıf",
    "gun": 3,
@@ -308,7 +350,7 @@
   {
    "id": 22,
    "kod": "COM3073",
-   "dersAdi": "COM3073",
+   "dersAdi": "OCCUPATIONAL HEALTH AND SAFETY I",
    "labMi": false,
    "grup": "İngilizce 3. Sınıf",
    "gun": 4,
@@ -319,7 +361,7 @@
   {
    "id": 23,
    "kod": "COM3033",
-   "dersAdi": "COM3033 Laboratuvarı",
+   "dersAdi": "OPERATING SYSTEMS",
    "labMi": true,
    "grup": "İngilizce 3. Sınıf",
    "gun": 4,
@@ -330,7 +372,7 @@
   {
    "id": 24,
    "kod": "COM3551",
-   "dersAdi": "COM3551",
+   "dersAdi": "ARTIFICIAL INTELLIGENCE",
    "labMi": false,
    "grup": "İngilizce 3. Sınıf",
    "gun": 5,
@@ -341,7 +383,7 @@
   {
    "id": 25,
    "kod": "COM3067",
-   "dersAdi": "COM3067",
+   "dersAdi": "ALGORITHMS",
    "labMi": false,
    "grup": "İngilizce 3. Sınıf",
    "gun": 5,
@@ -352,7 +394,7 @@
   {
    "id": 26,
    "kod": "COM3067",
-   "dersAdi": "COM3067 Laboratuvarı",
+   "dersAdi": "ALGORITHMS",
    "labMi": true,
    "grup": "İngilizce 3. Sınıf",
    "gun": 5,
@@ -374,7 +416,7 @@
   {
    "id": 28,
    "kod": "COM4541",
-   "dersAdi": "COM4541",
+   "dersAdi": "AI-ASSISTED SOFTWARE ENGINEERING",
    "labMi": false,
    "grup": "İngilizce 4. Sınıf",
    "gun": 2,
@@ -473,7 +515,7 @@
   {
    "id": 37,
    "kod": "BLM1015",
-   "dersAdi": "BLM1015",
+   "dersAdi": "Bilgisayar Bilimlerine Giriş",
    "labMi": false,
    "grup": "Türkçe 1. Sınıf",
    "gun": 4,
@@ -495,7 +537,7 @@
   {
    "id": 39,
    "kod": "BLM2077",
-   "dersAdi": "BLM2077 Laboratuvarı",
+   "dersAdi": "Sayısal Mantık Tasarımı",
    "labMi": true,
    "grup": "Türkçe 2. Sınıf",
    "gun": 2,
@@ -506,7 +548,7 @@
   {
    "id": 40,
    "kod": "BLM2501",
-   "dersAdi": "BLM2501",
+   "dersAdi": "Bilimsel Programlama",
    "labMi": false,
    "grup": "Türkçe 2. Sınıf",
    "gun": 2,
@@ -517,7 +559,7 @@
   {
    "id": 41,
    "kod": "BLM2043",
-   "dersAdi": "BLM2043",
+   "dersAdi": "Programlama Dili Kavramları",
    "labMi": false,
    "grup": "Türkçe 2. Sınıf",
    "gun": 3,
@@ -528,7 +570,7 @@
   {
    "id": 42,
    "kod": "BLM2043",
-   "dersAdi": "BLM2043 Laboratuvarı",
+   "dersAdi": "Programlama Dili Kavramları",
    "labMi": true,
    "grup": "Türkçe 2. Sınıf",
    "gun": 3,
@@ -539,7 +581,7 @@
   {
    "id": 43,
    "kod": "BLM2067",
-   "dersAdi": "BLM2067 Laboratuvarı",
+   "dersAdi": "Veri Yapıları",
    "labMi": true,
    "grup": "Türkçe 2. Sınıf",
    "gun": 3,
@@ -550,7 +592,7 @@
   {
    "id": 44,
    "kod": "BLM2067",
-   "dersAdi": "BLM2067",
+   "dersAdi": "Veri Yapıları",
    "labMi": false,
    "grup": "Türkçe 2. Sınıf",
    "gun": 4,
@@ -561,7 +603,7 @@
   {
    "id": 45,
    "kod": "BLM2537",
-   "dersAdi": "BLM2537",
+   "dersAdi": "Ağ Tabanlı Programlamaya Giriş",
    "labMi": false,
    "grup": "Türkçe 2. Sınıf",
    "gun": 4,
@@ -572,7 +614,7 @@
   {
    "id": 46,
    "kod": "BLM2077",
-   "dersAdi": "BLM2077",
+   "dersAdi": "Sayısal Mantık Tasarımı",
    "labMi": false,
    "grup": "Türkçe 2. Sınıf",
    "gun": 5,
@@ -583,7 +625,7 @@
   {
    "id": 47,
    "kod": "BLM2039",
-   "dersAdi": "BLM2039",
+   "dersAdi": "Ayrık Yapılar",
    "labMi": false,
    "grup": "Türkçe 2. Sınıf",
    "gun": 5,
@@ -594,7 +636,7 @@
   {
    "id": 48,
    "kod": "BLM3023",
-   "dersAdi": "BLM3023 Laboratuvarı",
+   "dersAdi": "Mikroişlemciler ve Gömülü Sistemler",
    "labMi": true,
    "grup": "Türkçe 3. Sınıf",
    "gun": 1,
@@ -605,7 +647,7 @@
   {
    "id": 49,
    "kod": "BLM3033",
-   "dersAdi": "BLM3033 Laboratuvarı",
+   "dersAdi": "İşletim Sistemleri",
    "labMi": true,
    "grup": "Türkçe 3. Sınıf",
    "gun": 1,
@@ -616,7 +658,7 @@
   {
    "id": 50,
    "kod": "BLM3067",
-   "dersAdi": "BLM3067 Laboratuvarı",
+   "dersAdi": "Algoritmalar",
    "labMi": true,
    "grup": "Türkçe 3. Sınıf",
    "gun": 1,
@@ -627,7 +669,7 @@
   {
    "id": 51,
    "kod": "BLM3557",
-   "dersAdi": "BLM3557",
+   "dersAdi": "Veri İletişimi",
    "labMi": false,
    "grup": "Türkçe 3. Sınıf",
    "gun": 2,
@@ -638,7 +680,7 @@
   {
    "id": 52,
    "kod": "BLM3033",
-   "dersAdi": "BLM3033",
+   "dersAdi": "İşletim Sistemleri",
    "labMi": false,
    "grup": "Türkçe 3. Sınıf",
    "gun": 2,
@@ -649,7 +691,7 @@
   {
    "id": 53,
    "kod": "BLM3067",
-   "dersAdi": "BLM3067",
+   "dersAdi": "Algoritmalar",
    "labMi": false,
    "grup": "Türkçe 3. Sınıf",
    "gun": 3,
@@ -660,7 +702,7 @@
   {
    "id": 54,
    "kod": "BLM3533",
-   "dersAdi": "BLM3533",
+   "dersAdi": "Sayısal Analiz Teknikleri",
    "labMi": false,
    "grup": "Türkçe 3. Sınıf",
    "gun": 3,
@@ -671,7 +713,7 @@
   {
    "id": 55,
    "kod": "BLM3073",
-   "dersAdi": "BLM3073",
+   "dersAdi": "İş Sağlığı ve Güvenliği I",
    "labMi": false,
    "grup": "Türkçe 3. Sınıf",
    "gun": 4,
@@ -682,7 +724,7 @@
   {
    "id": 56,
    "kod": "BLM3551",
-   "dersAdi": "BLM3551",
+   "dersAdi": "Yapay Zeka",
    "labMi": false,
    "grup": "Türkçe 3. Sınıf",
    "gun": 5,
@@ -693,7 +735,7 @@
   {
    "id": 57,
    "kod": "BLM3023",
-   "dersAdi": "BLM3023",
+   "dersAdi": "Mikroişlemciler ve Gömülü Sistemler",
    "labMi": false,
    "grup": "Türkçe 3. Sınıf",
    "gun": 5,
@@ -704,7 +746,7 @@
   {
    "id": 58,
    "kod": "BLM4551",
-   "dersAdi": "BLM4551",
+   "dersAdi": "Mobil Cihazlar İçin Android İşletim Sistemi",
    "labMi": false,
    "grup": "Türkçe 4. Sınıf",
    "gun": 1,
@@ -726,7 +768,7 @@
   {
    "id": 60,
    "kod": "BLM4583",
-   "dersAdi": "BLM4583",
+   "dersAdi": "Nesne Yönelimli Yazılım Modelleme",
    "labMi": false,
    "grup": "Türkçe 4. Sınıf",
    "gun": 2,
@@ -737,7 +779,7 @@
   {
    "id": 61,
    "kod": "BLM4541",
-   "dersAdi": "BLM4541",
+   "dersAdi": "Yapay Zeka Destekli Yazılım Mühendisliği",
    "labMi": false,
    "grup": "Türkçe 4. Sınıf",
    "gun": 2,
@@ -759,7 +801,7 @@
   {
    "id": 63,
    "kod": "BLM4587",
-   "dersAdi": "BLM4587",
+   "dersAdi": "IOS ile Mobil Uygulama Geliştirme I",
    "labMi": false,
    "grup": "Türkçe 4. Sınıf",
    "gun": 3,
@@ -770,7 +812,7 @@
   {
    "id": 64,
    "kod": "BLM4559",
-   "dersAdi": "BLM4559",
+   "dersAdi": "Uzaktan Algılama",
    "labMi": false,
    "grup": "Türkçe 4. Sınıf",
    "gun": 5,
@@ -781,7 +823,7 @@
   {
    "id": 65,
    "kod": "BLM4561",
-   "dersAdi": "BLM4561",
+   "dersAdi": "Bilgi Teknolojileri Yönetimi",
    "labMi": false,
    "grup": "Türkçe 4. Sınıf",
    "gun": 5,

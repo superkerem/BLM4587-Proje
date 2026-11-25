@@ -17,9 +17,11 @@ namespace api.Data
                 await MekanlariEkleAsync(context);
             }
 
-            if (!await context.Derslikler.AnyAsync() && !await context.Dersler.AnyAsync())
+            await DersPrograminiGuncelleAsync(context);
+
+            if (!await context.Sinavlar.AnyAsync())
             {
-                await DersPrograminiEkleAsync(context);
+                await SinavlariEkleAsync(context);
             }
 
             if (!await context.KutuphaneMasalari.AnyAsync())
@@ -76,34 +78,64 @@ namespace api.Data
             await context.SaveChangesAsync();
         }
 
-        private static async Task DersPrograminiEkleAsync(ApplicationDbContext context)
+        private static async Task DersPrograminiGuncelleAsync(ApplicationDbContext context)
         {
             using var belge = await DosyaOkuAsync("ders_programi.json");
 
+            var derslikler = await context.Derslikler.ToDictionaryAsync(d => d.Id);
             foreach (var oge in belge.RootElement.GetProperty("derslikler").EnumerateArray())
             {
-                context.Derslikler.Add(new Derslik
+                var id = oge.GetProperty("id").GetInt32();
+                if (!derslikler.TryGetValue(id, out var derslik))
                 {
-                    Id = oge.GetProperty("id").GetInt32(),
-                    Ad = oge.GetProperty("ad").GetString()!,
-                    MekanId = SayiVeyaBos(oge.GetProperty("mekanId")),
-                    Not = oge.GetProperty("not").GetString()
-                });
+                    derslik = new Derslik { Id = id };
+                    context.Derslikler.Add(derslik);
+                }
+
+                derslik.Ad = oge.GetProperty("ad").GetString()!;
+                derslik.MekanId = SayiVeyaBos(oge.GetProperty("mekanId"));
+                derslik.Not = oge.GetProperty("not").GetString();
             }
 
             await context.SaveChangesAsync();
             await SayaciGuncelleAsync(context, "Derslikler");
 
+            var dersler = await context.Dersler.ToDictionaryAsync(d => d.Id);
             foreach (var oge in belge.RootElement.GetProperty("dersler").EnumerateArray())
             {
-                context.Dersler.Add(new Ders
+                var id = oge.GetProperty("id").GetInt32();
+                if (!dersler.TryGetValue(id, out var ders))
+                {
+                    ders = new Ders { Id = id };
+                    context.Dersler.Add(ders);
+                }
+
+                ders.Kod = oge.GetProperty("kod").GetString()!;
+                ders.DersAdi = oge.GetProperty("dersAdi").GetString()!;
+                ders.LabMi = oge.GetProperty("labMi").GetBoolean();
+                ders.Grup = oge.GetProperty("grup").GetString()!;
+                ders.Gun = oge.GetProperty("gun").GetInt32();
+                ders.BaslangicSaati = Saat(oge.GetProperty("baslangic").GetString()!);
+                ders.BitisSaati = Saat(oge.GetProperty("bitis").GetString()!);
+                ders.DerslikId = SayiVeyaBos(oge.GetProperty("derslikId"));
+            }
+
+            await context.SaveChangesAsync();
+            await SayaciGuncelleAsync(context, "Dersler");
+        }
+
+        private static async Task SinavlariEkleAsync(ApplicationDbContext context)
+        {
+            using var belge = await DosyaOkuAsync("sinav_programi.json");
+
+            foreach (var oge in belge.RootElement.EnumerateArray())
+            {
+                context.Sinavlar.Add(new Sinav
                 {
                     Id = oge.GetProperty("id").GetInt32(),
-                    Kod = oge.GetProperty("kod").GetString()!,
-                    DersAdi = oge.GetProperty("dersAdi").GetString()!,
-                    LabMi = oge.GetProperty("labMi").GetBoolean(),
-                    Grup = oge.GetProperty("grup").GetString()!,
-                    Gun = oge.GetProperty("gun").GetInt32(),
+                    DersKodu = oge.GetProperty("dersKodu").GetString()!,
+                    Tur = Enum.Parse<SinavTuru>(oge.GetProperty("tur").GetString()!),
+                    Tarih = DateOnly.ParseExact(oge.GetProperty("tarih").GetString()!, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                     BaslangicSaati = Saat(oge.GetProperty("baslangic").GetString()!),
                     BitisSaati = Saat(oge.GetProperty("bitis").GetString()!),
                     DerslikId = SayiVeyaBos(oge.GetProperty("derslikId"))
@@ -111,7 +143,7 @@ namespace api.Data
             }
 
             await context.SaveChangesAsync();
-            await SayaciGuncelleAsync(context, "Dersler");
+            await SayaciGuncelleAsync(context, "Sinavlar");
         }
 
         private static async Task KutuphaneMasalariniEkleAsync(ApplicationDbContext context)

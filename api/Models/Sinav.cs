@@ -16,6 +16,7 @@ namespace api.Models
 
         [Required(ErrorMessage = "Ders kodu zorunludur.")]
         [StringLength(20)]
+        [RegularExpression(@"^[A-ZÇĞİÖŞÜ]{2,4}[0-9]{3,4}$", ErrorMessage = "Ders kodu 'BLM4581' biçiminde olmalıdır.")]
         [Display(Name = "Ders Kodu")]
         public string DersKodu { get; set; } = string.Empty;
 
