@@ -34,5 +34,7 @@ namespace api.Models
         public string Geometri { get; set; } = string.Empty;
 
         public ICollection<Derslik> Derslikler { get; set; } = new List<Derslik>();
+
+        public ICollection<KantinUrunu> Urunler { get; set; } = new List<KantinUrunu>();
     }
 }

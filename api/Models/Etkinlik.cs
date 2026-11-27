@@ -31,5 +31,11 @@ namespace api.Models
         [StringLength(150)]
         [Display(Name = "Konum")]
         public string Konum { get; set; } = string.Empty;
+
+        // Etkinlik kampüsteki bir binada yapılıyorsa haritada o binaya gidilebilir.
+        [Display(Name = "Harita Konumu")]
+        public int? MekanId { get; set; }
+
+        public Mekan? Mekan { get; set; }
     }
 }
