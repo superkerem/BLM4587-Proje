@@ -1,0 +1,290 @@
+{
+  "ilkGun": "2026-11-23",
+  "sonGun": "2027-01-15",
+  "tatiller": [
+    "2027-01-01"
+  ],
+  "menuSirasi": [
+    {
+      "corba": "Mercimek Çorbası",
+      "anaYemek": "Orman Kebabı",
+      "yanYemek": "Pirinç Pilavı",
+      "tatli": "Sütlaç",
+      "vejetaryen": "Sebzeli Türlü",
+      "kalori": 1050
+    },
+    {
+      "corba": "Ezogelin Çorbası",
+      "anaYemek": "Tavuk Sote",
+      "yanYemek": "Bulgur Pilavı",
+      "tatli": "Mevsim Meyvesi",
+      "vejetaryen": "Zeytinyağlı Taze Fasulye",
+      "kalori": 980
+    },
+    {
+      "corba": "Domates Çorbası",
+      "anaYemek": "Etli Kuru Fasulye",
+      "yanYemek": "Pirinç Pilavı",
+      "tatli": "Turşu",
+      "vejetaryen": "Zeytinyağlı Kuru Fasulye",
+      "kalori": 1120
+    },
+    {
+      "corba": "Yayla Çorbası",
+      "anaYemek": "Fırında Köfte",
+      "yanYemek": "Patates Püresi",
+      "tatli": "Revani",
+      "vejetaryen": "Sebze Graten",
+      "kalori": 1150
+    },
+    {
+      "corba": "Tarhana Çorbası",
+      "anaYemek": "Fırın Tavuk",
+      "yanYemek": "Şehriyeli Pilav",
+      "tatli": "Ayran",
+      "vejetaryen": "Mantar Sote",
+      "kalori": 1010
+    },
+    {
+      "corba": "Sebze Çorbası",
+      "anaYemek": "Etli Nohut",
+      "yanYemek": "Pirinç Pilavı",
+      "tatli": "Cacık",
+      "vejetaryen": "Zeytinyağlı Nohut",
+      "kalori": 1080
+    },
+    {
+      "corba": "Mercimek Çorbası",
+      "anaYemek": "Tavuk Şiş",
+      "yanYemek": "Bulgur Pilavı",
+      "tatli": "Kemalpaşa Tatlısı",
+      "vejetaryen": "Sebzeli Bulgur",
+      "kalori": 1090
+    },
+    {
+      "corba": "Şehriye Çorbası",
+      "anaYemek": "İzmir Köfte",
+      "yanYemek": "Pirinç Pilavı",
+      "tatli": "Mevsim Meyvesi",
+      "vejetaryen": "Zeytinyağlı Pırasa",
+      "kalori": 1060
+    },
+    {
+      "corba": "Ezogelin Çorbası",
+      "anaYemek": "Karnıyarık",
+      "yanYemek": "Pirinç Pilavı",
+      "tatli": "Yoğurt",
+      "vejetaryen": "İmam Bayıldı",
+      "kalori": 1000
+    },
+    {
+      "corba": "Yayla Çorbası",
+      "anaYemek": "Tavuk Döner",
+      "yanYemek": "Bulgur Pilavı",
+      "tatli": "Supangle",
+      "vejetaryen": "Sebzeli Makarna",
+      "kalori": 1170
+    },
+    {
+      "corba": "Domates Çorbası",
+      "anaYemek": "Etli Bezelye",
+      "yanYemek": "Pirinç Pilavı",
+      "tatli": "Ayran",
+      "vejetaryen": "Zeytinyağlı Bezelye",
+      "kalori": 990
+    },
+    {
+      "corba": "Tarhana Çorbası",
+      "anaYemek": "Fırında Makarna",
+      "yanYemek": "Mevsim Salata",
+      "tatli": "Puding",
+      "vejetaryen": "Peynirli Makarna",
+      "kalori": 1110
+    },
+    {
+      "corba": "Mercimek Çorbası",
+      "anaYemek": "Tas Kebabı",
+      "yanYemek": "Bulgur Pilavı",
+      "tatli": "Mevsim Meyvesi",
+      "vejetaryen": "Ispanaklı Börek",
+      "kalori": 1070
+    },
+    {
+      "corba": "Sebze Çorbası",
+      "anaYemek": "Tavuk Haşlama",
+      "yanYemek": "Pirinç Pilavı",
+      "tatli": "Kazandibi",
+      "vejetaryen": "Sebzeli Pilav",
+      "kalori": 980
+    },
+    {
+      "corba": "Ezogelin Çorbası",
+      "anaYemek": "Kadınbudu Köfte",
+      "yanYemek": "Patates Püresi",
+      "tatli": "Cacık",
+      "vejetaryen": "Mücver",
+      "kalori": 1140
+    },
+    {
+      "corba": "Yayla Çorbası",
+      "anaYemek": "Etli Kuru Fasulye",
+      "yanYemek": "Pirinç Pilavı",
+      "tatli": "Turşu",
+      "vejetaryen": "Zeytinyağlı Kuru Fasulye",
+      "kalori": 1120
+    },
+    {
+      "corba": "Şehriye Çorbası",
+      "anaYemek": "Tavuk Pirzola",
+      "yanYemek": "Bulgur Pilavı",
+      "tatli": "Şekerpare",
+      "vejetaryen": "Mantarlı Makarna",
+      "kalori": 1160
+    },
+    {
+      "corba": "Domates Çorbası",
+      "anaYemek": "Etli Taze Fasulye",
+      "yanYemek": "Pirinç Pilavı",
+      "tatli": "Yoğurt",
+      "vejetaryen": "Zeytinyağlı Taze Fasulye",
+      "kalori": 960
+    },
+    {
+      "corba": "Mercimek Çorbası",
+      "anaYemek": "Hasanpaşa Köfte",
+      "yanYemek": "Şehriyeli Pilav",
+      "tatli": "Mevsim Meyvesi",
+      "vejetaryen": "Patlıcan Musakka",
+      "kalori": 1100
+    },
+    {
+      "corba": "Tarhana Çorbası",
+      "anaYemek": "Fırın Tavuk",
+      "yanYemek": "Mevsim Salata",
+      "tatli": "Güllaç",
+      "vejetaryen": "Sebze Graten",
+      "kalori": 1030
+    }
+  ],
+  "kantinUrunleri": [
+    {
+      "mekanId": 12,
+      "ad": "Çay",
+      "kategori": "SicakIcecek",
+      "fiyat": 15,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Türk Kahvesi",
+      "kategori": "SicakIcecek",
+      "fiyat": 60,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Filtre Kahve",
+      "kategori": "SicakIcecek",
+      "fiyat": 70,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Latte",
+      "kategori": "SicakIcecek",
+      "fiyat": 85,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Sıcak Çikolata",
+      "kategori": "SicakIcecek",
+      "fiyat": 75,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Su (0,5 L)",
+      "kategori": "SogukIcecek",
+      "fiyat": 10,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Ayran",
+      "kategori": "SogukIcecek",
+      "fiyat": 25,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Meyve Suyu",
+      "kategori": "SogukIcecek",
+      "fiyat": 40,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Gazlı İçecek",
+      "kategori": "SogukIcecek",
+      "fiyat": 45,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Kaşarlı Tost",
+      "kategori": "Yiyecek",
+      "fiyat": 90,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Karışık Tost",
+      "kategori": "Yiyecek",
+      "fiyat": 110,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Tavuklu Sandviç",
+      "kategori": "Yiyecek",
+      "fiyat": 120,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Simit",
+      "kategori": "Atistirmalik",
+      "fiyat": 25,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Peynirli Poğaça",
+      "kategori": "Atistirmalik",
+      "fiyat": 30,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Çikolata",
+      "kategori": "Atistirmalik",
+      "fiyat": 40,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Kek",
+      "kategori": "Tatli",
+      "fiyat": 50,
+      "mevcutMu": true
+    },
+    {
+      "mekanId": 12,
+      "ad": "Cheesecake",
+      "kategori": "Tatli",
+      "fiyat": 110,
+      "mevcutMu": false
+    }
+  ]
+}

@@ -16,6 +16,10 @@ namespace api.Data
             {
                 await MekanlariEkleAsync(context);
             }
+            else
+            {
+                await MekanTurleriniGuncelleAsync(context);
+            }
 
             await DersPrograminiGuncelleAsync(context);
 
@@ -27,6 +31,16 @@ namespace api.Data
             if (!await context.KutuphaneMasalari.AnyAsync())
             {
                 await KutuphaneMasalariniEkleAsync(context);
+            }
+
+            if (!await context.YemekMenuleri.AnyAsync())
+            {
+                await YemekhaneVerisiniEkleAsync(context);
+            }
+
+            if (!await context.Etkinlikler.AnyAsync())
+            {
+                await EtkinlikleriEkleAsync(context);
             }
         }
 
@@ -72,6 +86,25 @@ namespace api.Data
                         Boylam = boylam,
                         Geometri = geometri.GetRawText()
                     });
+                }
+            }
+
+            await context.SaveChangesAsync();
+        }
+
+        // Önceden oluşturulmuş veritabanlarında mekan türü değiştiyse (ör. SKS binası artık Yemekhane) günceller.
+        private static async Task MekanTurleriniGuncelleAsync(ApplicationDbContext context)
+        {
+            using var belge = await DosyaOkuAsync("kampus_mekanlari.json");
+            var mekanlar = await context.Mekanlar.ToDictionaryAsync(m => m.Id);
+
+            foreach (var oge in belge.RootElement.EnumerateArray())
+            {
+                var id = oge.GetProperty("id").GetInt32();
+                var tur = Enum.Parse<MekanTuru>(oge.GetProperty("tur").GetString()!);
+                if (mekanlar.TryGetValue(id, out var mekan) && mekan.Tur != tur)
+                {
+                    mekan.Tur = tur;
                 }
             }
 
@@ -183,6 +216,86 @@ namespace api.Data
 
             await context.SaveChangesAsync();
         }
+
+        // Dört haftalık menü sırası, ilk ve son gün arasındaki hafta içi günlere sırayla dağıtılır.
+        private static async Task YemekhaneVerisiniEkleAsync(ApplicationDbContext context)
+        {
+            using var belge = await DosyaOkuAsync("yemekhane.json");
+            var kok = belge.RootElement;
+
+            var ilkGun = Tarih(kok.GetProperty("ilkGun").GetString()!);
+            var sonGun = Tarih(kok.GetProperty("sonGun").GetString()!);
+            var tatiller = kok.GetProperty("tatiller").EnumerateArray().Select(t => Tarih(t.GetString()!)).ToHashSet();
+            var menuSirasi = kok.GetProperty("menuSirasi").EnumerateArray().ToList();
+
+            var sira = 0;
+            for (var gun = ilkGun; gun <= sonGun; gun = gun.AddDays(1))
+            {
+                if (gun.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday || tatiller.Contains(gun))
+                {
+                    continue;
+                }
+
+                var oge = menuSirasi[sira % menuSirasi.Count];
+                context.YemekMenuleri.Add(new YemekMenusu
+                {
+                    Tarih = gun,
+                    Corba = oge.GetProperty("corba").GetString()!,
+                    AnaYemek = oge.GetProperty("anaYemek").GetString()!,
+                    YanYemek = oge.GetProperty("yanYemek").GetString(),
+                    Tatli = oge.GetProperty("tatli").GetString(),
+                    VejetaryenSecenek = oge.GetProperty("vejetaryen").GetString(),
+                    Kalori = oge.GetProperty("kalori").GetInt32()
+                });
+                sira++;
+            }
+
+            var mekanIdleri = await context.Mekanlar.Select(m => m.Id).ToListAsync();
+            foreach (var oge in kok.GetProperty("kantinUrunleri").EnumerateArray())
+            {
+                var mekanId = oge.GetProperty("mekanId").GetInt32();
+                if (!mekanIdleri.Contains(mekanId))
+                {
+                    continue;
+                }
+
+                context.KantinUrunleri.Add(new KantinUrunu
+                {
+                    MekanId = mekanId,
+                    Ad = oge.GetProperty("ad").GetString()!,
+                    Kategori = Enum.Parse<UrunKategorisi>(oge.GetProperty("kategori").GetString()!),
+                    Fiyat = oge.GetProperty("fiyat").GetDecimal(),
+                    MevcutMu = oge.GetProperty("mevcutMu").GetBoolean()
+                });
+            }
+
+            await context.SaveChangesAsync();
+        }
+
+        private static async Task EtkinlikleriEkleAsync(ApplicationDbContext context)
+        {
+            using var belge = await DosyaOkuAsync("etkinlikler.json");
+            var mekanIdleri = await context.Mekanlar.Select(m => m.Id).ToListAsync();
+
+            foreach (var oge in belge.RootElement.EnumerateArray())
+            {
+                var mekanId = SayiVeyaBos(oge.GetProperty("mekanId"));
+                context.Etkinlikler.Add(new Etkinlik
+                {
+                    Baslik = oge.GetProperty("baslik").GetString()!,
+                    Aciklama = oge.GetProperty("aciklama").GetString()!,
+                    ToplulukAdi = oge.GetProperty("toplulukAdi").GetString()!,
+                    Tarih = oge.GetProperty("tarih").GetDateTime().ToUniversalTime(),
+                    Konum = oge.GetProperty("konum").GetString()!,
+                    MekanId = mekanId is int id && mekanIdleri.Contains(id) ? id : null
+                });
+            }
+
+            await context.SaveChangesAsync();
+        }
+
+        private static DateOnly Tarih(string metin) =>
+            DateOnly.ParseExact(metin, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
         private static int? SayiVeyaBos(JsonElement deger) =>
             deger.ValueKind == JsonValueKind.Number ? deger.GetInt32() : null;

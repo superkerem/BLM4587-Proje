@@ -22,6 +22,8 @@ namespace api.Data
         public DbSet<Mekan> Mekanlar { get; set; }
         public DbSet<KullaniciDersi> KullaniciDersleri { get; set; }
         public DbSet<Sinav> Sinavlar { get; set; }
+        public DbSet<YemekMenusu> YemekMenuleri { get; set; }
+        public DbSet<KantinUrunu> KantinUrunleri { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -123,6 +125,36 @@ namespace api.Data
                 .WithMany(k => k.Duyurular)
                 .HasForeignKey(d => d.YazarId)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            // Etkinliğin yapıldığı bina silinirse etkinlik kalsın, sadece harita bağlantısı kalksın.
+            modelBuilder.Entity<Etkinlik>()
+                .HasOne(e => e.Mekan)
+                .WithMany()
+                .HasForeignKey(e => e.MekanId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Etkinlik>()
+                .HasIndex(e => e.Tarih);
+
+            // Her gün için tek menü olur.
+            modelBuilder.Entity<YemekMenusu>()
+                .HasIndex(m => m.Tarih)
+                .IsUnique();
+
+            modelBuilder.Entity<KantinUrunu>()
+                .HasOne(u => u.Mekan)
+                .WithMany(m => m.Urunler)
+                .HasForeignKey(u => u.MekanId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<KantinUrunu>()
+                .Property(u => u.Kategori)
+                .HasConversion<string>()
+                .HasMaxLength(30);
+
+            modelBuilder.Entity<KantinUrunu>()
+                .Property(u => u.Fiyat)
+                .HasPrecision(8, 2);
         }
     }
 }

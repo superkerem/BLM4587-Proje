@@ -329,6 +329,9 @@ namespace api.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
 
+                    b.Property<int?>("MekanId")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("Tarih")
                         .HasColumnType("timestamp with time zone");
 
@@ -339,7 +342,46 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MekanId");
+
+                    b.HasIndex("Tarih");
+
                     b.ToTable("Etkinlikler");
+                });
+
+            modelBuilder.Entity("api.Models.KantinUrunu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Ad")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("character varying(80)");
+
+                    b.Property<decimal>("Fiyat")
+                        .HasPrecision(8, 2)
+                        .HasColumnType("numeric(8,2)");
+
+                    b.Property<string>("Kategori")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
+
+                    b.Property<int>("MekanId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("MevcutMu")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MekanId");
+
+                    b.ToTable("KantinUrunleri");
                 });
 
             modelBuilder.Entity("api.Models.KayipEsya", b =>
@@ -629,6 +671,50 @@ namespace api.Migrations
                     b.ToTable("Sinavlar");
                 });
 
+            modelBuilder.Entity("api.Models.YemekMenusu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AnaYemek")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("character varying(80)");
+
+                    b.Property<string>("Corba")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("character varying(80)");
+
+                    b.Property<int?>("Kalori")
+                        .HasColumnType("integer");
+
+                    b.Property<DateOnly>("Tarih")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Tatli")
+                        .HasMaxLength(80)
+                        .HasColumnType("character varying(80)");
+
+                    b.Property<string>("VejetaryenSecenek")
+                        .HasMaxLength(80)
+                        .HasColumnType("character varying(80)");
+
+                    b.Property<string>("YanYemek")
+                        .HasMaxLength(80)
+                        .HasColumnType("character varying(80)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Tarih")
+                        .IsUnique();
+
+                    b.ToTable("YemekMenuleri");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
@@ -717,6 +803,27 @@ namespace api.Migrations
                     b.Navigation("Yazar");
                 });
 
+            modelBuilder.Entity("api.Models.Etkinlik", b =>
+                {
+                    b.HasOne("api.Models.Mekan", "Mekan")
+                        .WithMany()
+                        .HasForeignKey("MekanId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Mekan");
+                });
+
+            modelBuilder.Entity("api.Models.KantinUrunu", b =>
+                {
+                    b.HasOne("api.Models.Mekan", "Mekan")
+                        .WithMany("Urunler")
+                        .HasForeignKey("MekanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Mekan");
+                });
+
             modelBuilder.Entity("api.Models.KayipEsya", b =>
                 {
                     b.HasOne("api.Models.Kullanici", "BildirenKullanici")
@@ -797,6 +904,8 @@ namespace api.Migrations
             modelBuilder.Entity("api.Models.Mekan", b =>
                 {
                     b.Navigation("Derslikler");
+
+                    b.Navigation("Urunler");
                 });
 #pragma warning restore 612, 618
         }

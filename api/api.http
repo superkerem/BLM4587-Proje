@@ -199,3 +199,23 @@ Authorization: Bearer {{giris.response.body.token}}
 ### Masayı erken boşalt (devam eden rezervasyon)
 POST {{api_HostAddress}}/api/kutuphane/rezervasyonlar/1/bosalt
 Authorization: Bearer {{giris.response.body.token}}
+
+### Bugünün yemek menüsü (tarih verilmezse bugün)
+GET {{api_HostAddress}}/api/yemekhane/menu?tarih=2026-11-27
+Authorization: Bearer {{giris.response.body.token}}
+
+### Haftalık menü (verilen tarihin haftası)
+GET {{api_HostAddress}}/api/yemekhane/haftalik?tarih=2026-11-27
+Authorization: Bearer {{giris.response.body.token}}
+
+### Yemekhane binası (haritada göstermek için)
+GET {{api_HostAddress}}/api/yemekhane/binalar
+Authorization: Bearer {{giris.response.body.token}}
+
+### Kantinler ve ürünleri
+GET {{api_HostAddress}}/api/yemekhane/kantinler
+Authorization: Bearer {{giris.response.body.token}}
+
+### Tek kantin
+GET {{api_HostAddress}}/api/yemekhane/kantinler/12
+Authorization: Bearer {{giris.response.body.token}}
