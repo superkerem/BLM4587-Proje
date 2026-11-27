@@ -144,7 +144,7 @@ class _HaritaEkraniState extends State<HaritaEkrani> {
     return switch (mekan.tur) {
       MekanTuru.fakulte => 0.00007,
       MekanTuru.yurt => 0.00009,
-      MekanTuru.diger => 0.00005,
+      MekanTuru.diger || MekanTuru.yemekhane => 0.00005,
       _ => 0.00004,
     };
   }
