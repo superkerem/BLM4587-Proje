@@ -1,0 +1,74 @@
+[
+  {
+    "baslik": "Yapay Zekâya Giriş Atölyesi",
+    "toplulukAdi": "Yazılım Topluluğu",
+    "aciklama": "Python ile ilk makine öğrenmesi modelimizi birlikte kuruyoruz. Bilgisayarını getirmen yeterli, ön bilgi gerekmiyor.",
+    "tarih": "2026-11-18T11:00:00Z",
+    "konum": "Bilgisayar Mühendisliği Bölümü",
+    "mekanId": 2
+  },
+  {
+    "baslik": "Kampüs Fotoğraf Yürüyüşü",
+    "toplulukAdi": "Fotoğrafçılık Kulübü",
+    "aciklama": "Gölbaşı kampüsünde sonbahar fotoğrafları çekiyoruz. Telefon kamerası da olur. Buluşma noktası Dekanlık önü.",
+    "tarih": "2026-11-21T10:30:00Z",
+    "konum": "Mühendislik Fakültesi Dekanlığı önü",
+    "mekanId": 9
+  },
+  {
+    "baslik": "Satranç Turnuvası",
+    "toplulukAdi": "Satranç Kulübü",
+    "aciklama": "İsviçre sistemi 5 tur, 15+5 tempo. Kayıtlar etkinlik günü 13.30'a kadar alınır. İlk üçe kitap hediyesi var.",
+    "tarih": "2026-12-02T11:00:00Z",
+    "konum": "Point Cafe",
+    "mekanId": 12
+  },
+  {
+    "baslik": "Git ve GitHub Semineri",
+    "toplulukAdi": "Yazılım Topluluğu",
+    "aciklama": "Dal açma, PR, merge ve çakışma çözme. Dönem projesi yapan herkes için pratik bir oturum.",
+    "tarih": "2026-12-04T12:00:00Z",
+    "konum": "Yazılım Mühendisliği Bölümü",
+    "mekanId": 3
+  },
+  {
+    "baslik": "Gömülü Sistemler Söyleşisi",
+    "toplulukAdi": "Elektronik Topluluğu",
+    "aciklama": "Sektörden konuğumuzla mikrodenetleyiciler, IoT ve staj fırsatları üzerine söyleşi.",
+    "tarih": "2026-12-09T11:30:00Z",
+    "konum": "Elektrik-Elektronik Mühendisliği Bölümü",
+    "mekanId": 4
+  },
+  {
+    "baslik": "Girişimcilik Günü",
+    "toplulukAdi": "Girişimcilik Kulübü",
+    "aciklama": "Teknokent'teki girişimlerle tanışma, kısa sunumlar ve fikir maratonu tanıtımı.",
+    "tarih": "2026-12-11T10:00:00Z",
+    "konum": "Ankara Üniversitesi Teknokent",
+    "mekanId": 14
+  },
+  {
+    "baslik": "Kış Konseri",
+    "toplulukAdi": "Müzik Topluluğu",
+    "aciklama": "Topluluk grubumuzun dönem sonu konseri. Giriş ücretsiz, herkes davetli.",
+    "tarih": "2026-12-16T15:00:00Z",
+    "konum": "Spor Bilimleri Fakültesi",
+    "mekanId": 11
+  },
+  {
+    "baslik": "Doğa Yürüyüşü: Mogan Gölü",
+    "toplulukAdi": "Dağcılık Kulübü",
+    "aciklama": "Mogan Gölü çevresinde 8 km kolay parkur. Servis kampüsten kalkar, kayıt için kulüp masasına uğrayın.",
+    "tarih": "2026-12-19T06:30:00Z",
+    "konum": "Kampüs girişi (servis kalkış noktası)",
+    "mekanId": null
+  },
+  {
+    "baslik": "Final Haftası Çalışma Maratonu",
+    "toplulukAdi": "Öğrenci Konseyi",
+    "aciklama": "Final haftası öncesi birlikte çalışma, ücretsiz çay ve kahve ikramı.",
+    "tarih": "2026-12-23T14:00:00Z",
+    "konum": "Point Cafe",
+    "mekanId": 12
+  }
+]
