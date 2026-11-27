@@ -29,6 +29,10 @@ class ApiSabitleri {
   static const String kutuphaneDoluluk = '/api/kutuphane/doluluk';
   static const String rezervasyonlarim = '/api/kutuphane/rezervasyonlarim';
   static const String rezervasyonlar = '/api/kutuphane/rezervasyonlar';
+  static const String yemekhaneMenu = '/api/yemekhane/menu';
+  static const String yemekhaneHaftalik = '/api/yemekhane/haftalik';
+  static const String kantinler = '/api/yemekhane/kantinler';
+  static const String yemekhaneBinalari = '/api/yemekhane/binalar';
 
   static const Duration zamanAsimi = Duration(seconds: 15);
 }
